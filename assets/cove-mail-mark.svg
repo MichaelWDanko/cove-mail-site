@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Cove Mail mark</title>
+  <desc id="desc">A rounded envelope shape inside a calm blue app icon.</desc>
+  <rect width="512" height="512" rx="112" fill="#12324A"/>
+  <path d="M92 178C92 152.595 112.595 132 138 132H374C399.405 132 420 152.595 420 178V334C420 359.405 399.405 380 374 380H138C112.595 380 92 359.405 92 334V178Z" fill="#F7FBFF"/>
+  <path d="M118 167L238.087 262.778C248.574 271.143 263.426 271.143 273.913 262.778L394 167" stroke="#178CA4" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M135 340L216 263" stroke="#B7DCE3" stroke-width="18" stroke-linecap="round"/>
+  <path d="M377 340L296 263" stroke="#B7DCE3" stroke-width="18" stroke-linecap="round"/>
+  <path d="M108 394C152 362 202 348 256 348C310 348 360 362 404 394C364 417 314 430 256 430C198 430 148 417 108 394Z" fill="#1FB6C8" fill-opacity="0.38"/>
+</svg>
