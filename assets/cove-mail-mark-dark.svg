@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Cove Mail app icon in dark mode</title>
+  <desc id="desc">Layered shoreline bands inside a circular cove on a dark background.</desc>
+  <defs><clipPath id="shoreCircle"><circle cx="512" cy="512" r="374"/></clipPath></defs>
+  <rect width="1024" height="1024" fill="#111B22"/>
+  <circle cx="512" cy="512" r="374" fill="#16232C"/>
+  <circle cx="512" cy="512" r="374" fill="none" stroke="#52C3DD" stroke-width="10"/>
+  <g clip-path="url(#shoreCircle)">
+    <path fill="#28414B" d="M108 404C220 476 340 490 470 430C578 380 688 378 800 432C882 472 944 468 988 420V586H108Z"/>
+    <path fill="#D7E4E8" d="M100 494C214 572 338 582 472 518C584 464 696 468 810 528C884 566 946 564 992 522V650C940 680 884 678 812 632C704 566 604 554 492 612C360 682 220 670 100 604Z"/>
+    <path fill="#52C3DD" d="M98 576C212 650 350 660 488 592C604 536 704 548 804 620C882 674 946 666 998 624V760H98Z"/>
+    <path fill="#07131A" d="M78 680C206 762 342 762 474 684C606 606 734 628 864 754C916 804 964 832 1016 834V926H78Z"/>
+  </g>
+  <circle cx="730" cy="306" r="50" fill="#FF8D73"/>
+</svg>

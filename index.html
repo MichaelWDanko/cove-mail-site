@@ -5,35 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Cove Mail is a native macOS email client for iCloud Mail, built for focused review, local privacy, and AI-assisted workflows on your Mac."
+      content="Cove Mail is a native macOS email client that brings iCloud, Gmail, and other providers together with AI-assisted workflows on your Mac."
     />
-    <title>Cove Mail | Local-first email for Mac</title>
+    <title>Cove Mail | AI-assisted email for Mac</title>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://covemail.michaelwdanko.com/" />
-    <meta property="og:title" content="Cove Mail | Local-first email for Mac" />
+    <meta property="og:title" content="Cove Mail | AI-assisted email for Mac" />
     <meta
       property="og:description"
-      content="A calm native Mac email client for iCloud Mail, focused review, and local AI assistance."
+      content="One native Mac email client for every provider, with a built-in connection for compatible AI assistants."
     />
     <meta property="og:image" content="https://covemail.michaelwdanko.com/assets/cove-mail-mark.svg" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Cove Mail | Local-first email for Mac" />
+    <meta name="twitter:title" content="Cove Mail | AI-assisted email for Mac" />
     <meta
       name="twitter:description"
-      content="A calm native Mac email client for iCloud Mail, focused review, and local AI assistance."
+      content="One native Mac email client for every provider, with a built-in connection for compatible AI assistants."
     />
     <link rel="icon" href="./assets/cove-mail-mark.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="./app.js"></script>
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="ambient ambient-one" data-parallax="-0.055" aria-hidden="true"></div>
+    <div class="ambient ambient-two" data-parallax="0.035" aria-hidden="true"></div>
     <div class="page-shell">
       <header class="topbar">
         <a class="brand" href="#home" aria-label="Cove Mail home">
           <img src="./assets/cove-mail-mark.svg" alt="" class="brand-mark" />
           <span class="brand-copy">
             <strong>Cove Mail</strong>
-            <span>Quiet email for Mac</span>
+            <span>Your email, ready for AI.</span>
           </span>
         </a>
 
@@ -42,9 +45,9 @@
         </button>
 
         <nav id="site-nav" class="site-nav" aria-label="Primary">
-          <a href="#product">Why</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#privacy">Privacy</a>
+          <a href="#product">Product</a>
+          <a href="#workflow">AI connection</a>
+          <a href="#everyday">More</a>
           <a href="./privacy-policy.html">Policy</a>
         </nav>
       </header>
@@ -52,19 +55,26 @@
       <main id="home">
         <section class="hero">
           <div class="hero-copy reveal">
-            <p class="eyebrow">Native macOS email, built local-first</p>
-            <h1>A quieter place to review iCloud Mail.</h1>
+            <p class="eyebrow">Your email. Your Mac. Your choice of AI.</p>
+            <h1>Bring an AI assistant to every inbox.</h1>
             <p class="lede">
-              Cove Mail is a native Mac email client for focused inbox review, everyday message
-              actions, and AI-assisted workflows that stay grounded in local control.
+              Cove Mail brings iCloud, Gmail, and other email accounts into one native Mac app—then
+              gives the assistant you choose a direct way to help.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#coming-soon">Coming soon</a>
-              <a class="button button-secondary" href="#product">See the focus</a>
+              <a class="button button-primary" href="#product">Explore Cove Mail</a>
+              <a class="button button-secondary" href="#workflow">How AI connects</a>
             </div>
           </div>
 
-          <aside class="mail-preview reveal" aria-label="Cove Mail app preview">
+          <aside class="mail-preview reveal" data-parallax="-0.025" aria-label="Cove Mail app preview">
+            <div class="preview-shadow" aria-hidden="true"></div>
+            <div class="floating-chip chip-private" data-parallax="-0.075" aria-hidden="true">
+              <span class="chip-dot"></span> Gmail, iCloud &amp; IMAP
+            </div>
+            <div class="floating-chip chip-native" data-parallax="0.055" aria-hidden="true">
+              <span>⌘</span> Native Mac controls
+            </div>
             <div class="window-shell">
               <div class="window-chrome">
                 <span></span>
@@ -74,8 +84,9 @@
               <div class="mail-app">
                 <div class="sidebar">
                   <div class="sidebar-title">Mailboxes</div>
-                  <div class="mailbox active">Inbox <strong>18</strong></div>
-                  <div class="mailbox">Flagged <strong>4</strong></div>
+                  <div class="mailbox active">All Inboxes <strong>18</strong></div>
+                  <div class="mailbox">Gmail <strong>7</strong></div>
+                  <div class="mailbox">iCloud <strong>11</strong></div>
                   <div class="mailbox">Drafts <strong>2</strong></div>
                 </div>
                 <div class="message-list">
@@ -90,9 +101,9 @@
                     <p>Recent sign-in metadata is ready to review.</p>
                   </article>
                   <article class="message-row">
-                    <span>Cove Assistant</span>
-                    <strong>Suggested follow-ups</strong>
-                    <p>Three threads look ready for a quick reply.</p>
+                    <span>Jordan Wells</span>
+                    <strong>Re: Sunday dinner</strong>
+                    <p>Seven works for everyone. See you then.</p>
                   </article>
                 </div>
                 <div class="reading-pane">
@@ -106,8 +117,8 @@
                     <span></span>
                   </div>
                   <div class="assistant-strip">
-                    <strong>Local review</strong>
-                    <span>Summarize, draft, or triage with permission.</span>
+                    <strong>Two decisions found</strong>
+                    <span>Onboarding copy · Customer preview date</span>
                   </div>
                 </div>
               </div>
@@ -115,109 +126,97 @@
           </aside>
         </section>
 
-        <section id="coming-soon" class="section notice-section reveal">
-          <div class="notice-copy">
-            <p class="section-label">Coming soon</p>
-            <h2>Cove Mail is still in development.</h2>
-            <p>
-              The first release is focused on iCloud Mail accounts, a polished Mac inbox, and a
-              local automation surface for carefully permissioned AI workflows.
-            </p>
-          </div>
-        </section>
-
-        <section id="product" class="section status-section reveal">
+        <section id="product" class="section story-section reveal">
           <div class="section-heading">
-            <p class="section-label">Why it helps</p>
-            <h2>Email review without giving up the controls.</h2>
+            <p class="section-label">One review space</p>
+            <h2>Your accounts together. Provider differences out of the way.</h2>
+            <p class="section-intro">Move between multiple email accounts without changing apps or breaking your flow.</p>
           </div>
-          <div class="status-grid">
-            <article class="status-card">
-              <span class="status-pill calm">Focus</span>
-              <h3>Start from the inbox</h3>
-              <p>
-                Open directly into the account and mailbox that need attention, with familiar Mac
-                actions for reading, replying, moving, deleting, and marking messages.
-              </p>
-            </article>
-            <article class="status-card">
-              <span class="status-pill calm">Local</span>
-              <h3>Keep mail control on your Mac</h3>
-              <p>
-                Credentials belong in Keychain, account metadata stays local, and automation is
-                designed for localhost workflows instead of a remote service.
-              </p>
-            </article>
-            <article class="status-card">
-              <span class="status-pill next">Assist</span>
-              <h3>Invite AI when it is useful</h3>
-              <p>
-                Use structured local tools for review, drafts, and safe previews while keeping
-                permission clear before write actions run.
-              </p>
-            </article>
+          <div class="app-artifact inbox-artifact" data-parallax="-0.008" aria-label="Synthetic Cove Mail unified inbox preview">
+            <div class="artifact-toolbar">
+              <div class="traffic-lights"><i></i><i></i><i></i></div>
+              <div class="toolbar-account"><span class="provider-mark apple">●</span><span class="provider-mark google">G</span><strong>All Inboxes</strong><small>2 accounts · Updated now</small></div>
+              <div class="toolbar-search">⌕&nbsp;&nbsp; Search all mail</div>
+              <div class="toolbar-actions">↻ &nbsp; ⋯</div>
+            </div>
+            <div class="artifact-body">
+              <aside class="artifact-sidebar">
+                <p>Favorites</p>
+                <a class="selected">▣ &nbsp; All Inboxes <b>12</b></a>
+                <a>☆ &nbsp; Flagged <b>3</b></a>
+                <a>⌁ &nbsp; Drafts <b>2</b></a>
+                <p>Accounts</p>
+                <a><span class="provider-mark google">G</span> Work Gmail</a>
+                <a><span class="provider-mark apple">●</span> Personal iCloud</a>
+                <div class="sync-state"><i></i><span><strong>Up to date</strong><small>Mail stays available offline</small></span></div>
+              </aside>
+              <div class="artifact-list">
+                <div class="list-heading"><strong>Today</strong><span>12 unread</span></div>
+                <article class="artifact-message selected"><span class="sender-avatar teal">ML</span><div><p><strong>Maya Lin</strong><time>9:42 AM</time></p><h3>Launch notes for review</h3><span>Two decisions need your attention before Friday.</span><small>Work Gmail</small></div></article>
+                <article class="artifact-message"><span class="sender-avatar coral">RB</span><div><p><strong>Rowan Books</strong><time>8:16 AM</time></p><h3>Your July reading list</h3><span>Four new releases based on your saved titles.</span><small>Personal iCloud</small></div></article>
+                <article class="artifact-message"><span class="sender-avatar blue">AP</span><div><p><strong>Alex Park</strong><time>Yesterday</time></p><h3>Re: Weekend plans</h3><span>The weather looks perfect for the trail.</span><small>Personal iCloud</small></div></article>
+              </div>
+              <article class="artifact-reader">
+                <div class="reader-actions">↩ &nbsp; ↪ &nbsp; □ &nbsp; ⋯</div>
+                <small>Today at 9:42 AM</small><h3>Launch notes for review</h3>
+                <div class="sender-line"><span class="sender-avatar teal">ML</span><span><strong>Maya Lin</strong><small>to me · Work Gmail</small></span></div>
+                <p>Hi Jordan,</p><p>Here are the notes from our launch review. We need your call on the final onboarding copy and whether to move the customer preview to Thursday.</p>
+                <div class="decision-block"><span>Two decisions</span><strong>Onboarding copy</strong><strong>Customer preview date</strong></div>
+                <p>Thanks,<br>Maya</p>
+              </article>
+            </div>
           </div>
         </section>
 
-        <section id="workflow" class="section product-section reveal">
+        <section id="workflow" class="section assistant-section reveal">
           <div class="section-heading">
-            <p class="section-label">Workflow</p>
-            <h2>The core mail loop, tuned for careful review.</h2>
+            <p class="section-label">AI connection built in</p>
+            <h2>Connect the assistant you already use.</h2>
+            <p class="section-intro">Cove Mail uses an open standard called MCP to connect compatible AI assistants to your email on your Mac. Use a cloud assistant or a local model—the same connection works across providers while Cove Mail manages your accounts and email tools.</p>
           </div>
-          <div class="feature-grid">
-            <article class="feature-card">
-              <span>01</span>
-              <h3>Connect iCloud Mail</h3>
-              <p>Add an iCloud account with an app-specific password and keep credentials out of the database.</p>
-            </article>
-            <article class="feature-card">
-              <span>02</span>
-              <h3>Review real mailboxes</h3>
-              <p>Browse folders, read messages, search metadata, and understand what needs action.</p>
-            </article>
-            <article class="feature-card">
-              <span>03</span>
-              <h3>Act from the Mac app</h3>
-              <p>Reply, forward, compose, send, delete, move, and mark messages with native app controls.</p>
-            </article>
-            <article class="feature-card">
-              <span>04</span>
-              <h3>Automate locally</h3>
-              <p>Expose permissioned MCP tools to local clients for repeatable review and draft workflows.</p>
-            </article>
+          <div class="connection-artifact" aria-label="Cove Mail connection between email accounts and an external AI assistant">
+            <div class="connection-titlebar"><img src="./assets/cove-mail-mark.svg" alt=""><span><strong>Cove Mail</strong><small>Settings · AI Connections</small></span><em>Connection active</em></div>
+            <div class="connection-stage">
+              <section class="connection-source">
+                <p class="artifact-kicker">Your email accounts</p>
+                <div class="account-source"><span class="provider-mark google">G</span><span><strong>Work Gmail</strong><small>Available to assistant</small></span><i>On</i></div>
+                <div class="account-source"><span class="provider-mark apple">●</span><span><strong>Personal iCloud</strong><small>Not available to assistant</small></span><i class="muted-state">Off</i></div>
+              </section>
+
+              <section class="local-bridge">
+                <div class="bridge-line" aria-hidden="true"><i></i><i></i><i></i></div>
+                <div class="bridge-core"><img src="./assets/cove-mail-mark-dark.svg" alt=""><span><strong>Cove Mail connection</strong><small>Runs with the Mac app</small></span></div>
+                <ul><li><i>✓</i> One connection for every provider</li><li><i>✓</i> Choose which mail tools are available</li><li><i>✓</i> Works with messages directly—not screen controls</li></ul>
+              </section>
+
+              <section class="connection-destination">
+                <p class="artifact-kicker">Your AI assistant</p>
+                <div class="assistant-client"><span class="client-symbol">AI</span><span><strong>Compatible assistant</strong><small>Connected using MCP</small></span><i>On</i></div>
+                <div class="available-access"><p><strong>Connection capabilities</strong><span>Configure</span></p><dl><div><dt>Review message details</dt><dd>Available</dd></div><div><dt>Read full messages</dt><dd>Restricted</dd></div><div><dt>Draft replies</dt><dd>Available</dd></div><div><dt>Send or delete</dt><dd>Unavailable</dd></div></dl></div>
+              </section>
+            </div>
+            <div class="connection-status"><span class="status-signal"></span><p><strong>Assistant connection ready</strong><small>Available to compatible assistants on this Mac</small></p><span>2 email accounts connected</span></div>
           </div>
         </section>
 
-        <section id="privacy" class="section privacy-section reveal">
-          <div class="split-copy">
-            <p class="section-label">Privacy posture</p>
-            <h2>Built around local ownership from the start.</h2>
-            <p>
-              Cove Mail is designed around account-scoped settings, local cached metadata, secure
-              credential storage, and explicit boundaries for automation. Future providers can be
-              added without changing the first principle: your mail client should feel like it
-              belongs to you.
-            </p>
+        <section id="everyday" class="section everyday-section reveal">
+          <div class="everyday-heading">
+            <p class="section-label">Beyond the inbox</p>
+            <h2>Built for the work between messages.</h2>
+            <p>The details that keep email moving are part of the product—not future add-ons.</p>
           </div>
-          <div class="model-list" aria-label="Cove Mail privacy priorities">
-            <article>
-              <strong>Keychain credentials</strong>
-              <span>Passwords are stored through macOS Keychain, not plain local files.</span>
-            </article>
-            <article>
-              <strong>Metadata-first tools</strong>
-              <span>Automation starts with structured message metadata and safe snippets.</span>
-            </article>
-            <article>
-              <strong>Permissioned writes</strong>
-              <span>Drafting, sending, deleting, and folder changes stay reviewable.</span>
-            </article>
+          <div class="capability-ledger" aria-label="Cove Mail capabilities">
+            <div><span>01</span><strong>Compose with identity</strong><p>Use account-specific senders, signatures, drafts, replies, forwards, and attachments.</p></div>
+            <div><span>02</span><strong>Reliable sending</strong><p>Track queued and failed messages in an Outbox instead of wondering what happened.</p></div>
+            <div><span>03</span><strong>Visible account health</strong><p>See synchronization progress and know when an account needs attention.</p></div>
+            <div><span>04</span><strong>Mail where you need it</strong><p>Keep selected mailboxes and attachments available offline.</p></div>
+            <div><span>05</span><strong>Predictable automation</strong><p>Order mail rules, understand their results, and review activity across accounts.</p></div>
           </div>
         </section>
       </main>
 
       <footer class="footer">
-        <p>Cove Mail is a local-first macOS email client in development.</p>
+        <p>Cove Mail is a multi-provider macOS email client in development.</p>
         <p>© <span data-current-year></span> Cove Mail</p>
         <nav class="footer-links" aria-label="Footer">
           <a href="./privacy-policy.html">Privacy Policy</a>

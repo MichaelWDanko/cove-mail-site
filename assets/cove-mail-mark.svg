@@ -1,10 +1,16 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Cove Mail mark</title>
-  <desc id="desc">A rounded envelope shape inside a calm blue app icon.</desc>
-  <rect width="512" height="512" rx="112" fill="#12324A"/>
-  <path d="M92 178C92 152.595 112.595 132 138 132H374C399.405 132 420 152.595 420 178V334C420 359.405 399.405 380 374 380H138C112.595 380 92 359.405 92 334V178Z" fill="#F7FBFF"/>
-  <path d="M118 167L238.087 262.778C248.574 271.143 263.426 271.143 273.913 262.778L394 167" stroke="#178CA4" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M135 340L216 263" stroke="#B7DCE3" stroke-width="18" stroke-linecap="round"/>
-  <path d="M377 340L296 263" stroke="#B7DCE3" stroke-width="18" stroke-linecap="round"/>
-  <path d="M108 394C152 362 202 348 256 348C310 348 360 362 404 394C364 417 314 430 256 430C198 430 148 417 108 394Z" fill="#1FB6C8" fill-opacity="0.38"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Cove Mail app icon</title>
+  <desc id="desc">Layered shoreline bands inside a circular cove.</desc>
+  <defs><clipPath id="shoreCircle"><circle cx="512" cy="512" r="374"/></clipPath></defs>
+  <rect width="1024" height="1024" fill="#BCE8F0"/>
+  <circle cx="512" cy="512" r="374" fill="#F5FAFB"/>
+  <circle cx="512" cy="512" r="374" fill="none" stroke="#0F8FB5" stroke-width="12"/>
+  <g clip-path="url(#shoreCircle)">
+    <path fill="#BCE8F0" d="M108 404C220 476 340 490 470 430C578 380 688 378 800 432C882 472 944 468 988 420V586H108Z"/>
+    <path fill="#FAFBFC" d="M100 494C214 572 338 582 472 518C584 464 696 468 810 528C884 566 946 564 992 522V650C940 680 884 678 812 632C704 566 604 554 492 612C360 682 220 670 100 604Z"/>
+    <path fill="#0F8FB5" d="M98 576C212 650 350 660 488 592C604 536 704 548 804 620C882 674 946 666 998 624V760H98Z"/>
+    <path fill="#102A3B" d="M78 680C206 762 342 762 474 684C606 606 734 628 864 754C916 804 964 832 1016 834V926H78Z"/>
+  </g>
+  <circle cx="730" cy="306" r="50" fill="#FF8D73"/>
 </svg>
