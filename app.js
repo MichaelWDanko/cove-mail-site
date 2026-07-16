@@ -1,9 +1,3 @@
-document.body.classList.add("motion-ready");
-
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => document.body.classList.add("page-loaded"));
-});
-
 const menuButton = document.querySelector(".menu-button");
 const siteNav = document.querySelector(".site-nav");
 
@@ -25,10 +19,25 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 });
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const revealNodes = [...document.querySelectorAll(".reveal")];
+const motionSupported = !reducedMotion && "IntersectionObserver" in window;
 
-if (reducedMotion) {
-  document.querySelectorAll(".reveal").forEach((node) => node.classList.add("is-visible"));
+if (!motionSupported) {
+  revealNodes.forEach((node) => node.classList.add("is-visible"));
 } else {
+  const initialRevealBoundary = innerHeight * 0.92;
+  revealNodes.forEach((node) => {
+    const bounds = node.getBoundingClientRect();
+    if (bounds.top < initialRevealBoundary && bounds.bottom > 0) {
+      node.classList.add("is-visible");
+    }
+  });
+
+  document.body.classList.add("motion-ready");
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => document.body.classList.add("page-loaded"));
+  });
+
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -40,7 +49,7 @@ if (reducedMotion) {
     },
     { threshold: 0.12, rootMargin: "0px 0px -8%" },
   );
-  document.querySelectorAll(".reveal").forEach((node) => observer.observe(node));
+  revealNodes.filter((node) => !node.classList.contains("is-visible")).forEach((node) => observer.observe(node));
 
   const compassWindow = document.querySelector(".compass-window");
   const compassInput = compassWindow?.querySelector(".compass-input strong");
