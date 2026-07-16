@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Cove Mail Harbor Blue favicon</title>
+  <desc id="desc">A bright cove with layered blue waves and a coral sun on a deep navy field.</desc>
+  <defs><clipPath id="cove"><circle cx="512" cy="500" r="330"/></clipPath><linearGradient id="field" x1="120" y1="80" x2="890" y2="940" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#173C52"/><stop offset="1" stop-color="#071F31"/></linearGradient></defs>
+  <rect width="1024" height="1024" rx="180" fill="url(#field)"/>
+  <circle cx="512" cy="500" r="346" fill="#FCFAF5" stroke="#69C6D6" stroke-width="32"/>
+  <g clip-path="url(#cove)"><rect x="160" y="170" width="704" height="660" fill="#FCFAF5"/><path fill="#B9DCE5" d="M150 435C255 500 365 505 485 450C605 395 718 405 874 488V610H150Z"/><path fill="#0F78A0" d="M140 535C262 614 388 620 510 557C632 494 741 519 884 628V755H140Z"/><path fill="#071F31" d="M130 665C267 748 395 748 518 679C650 605 765 643 894 770V860H130Z"/></g>
+  <circle cx="710" cy="318" r="46" fill="#FF8D73"/><circle cx="512" cy="500" r="346" fill="none" stroke="#D7EBEF" stroke-width="10"/>
+</svg>
