@@ -5,7 +5,7 @@ Static landing page and privacy policy for Cove Mail.
 The site is intended to be hosted with GitHub Pages at:
 
 ```text
-covemail.michaelwdanko.com
+covemail.ai
 ```
 
 ## Files
