@@ -9,13 +9,19 @@
     <meta property="og:url" content="https://covemail.ai/" />
     <meta property="og:title" content="Cove Mail | A native Mac email client for every inbox" />
     <meta property="og:description" content="All of your email in one native Mac app. Bring your own AI when you want it." />
-    <meta property="og:image" content="https://covemail.ai/assets/cove-mail-mark.svg" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="https://covemail.ai/assets/cove-mail-social.png" />
+    <meta property="og:image:width" content="1729" />
+    <meta property="og:image:height" content="910" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cove Mail | A native Mac email client for every inbox" />
     <meta name="twitter:description" content="All of your email in one native Mac app. Bring your own AI when you want it." />
+    <meta name="twitter:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=5" />
-    <script defer src="./app.js?v=4"></script>
+    <link rel="stylesheet" href="./styles.css?v=6" />
+    <script defer src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script defer src="/site-config.js"></script>
+    <script defer src="./app.js?v=5"></script>
+    <script type="module" src="./checkout.js?v=1"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,6 +35,7 @@
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
         <a href="#native">Native Mac app</a>
         <a href="#accounts">Accounts</a>
+        <a href="#pricing">Pricing</a>
         <a href="#connect">Bring your AI</a>
         <a href="./privacy-policy.html">Privacy</a>
       </nav>
@@ -130,6 +137,34 @@
         </div>
       </section>
 
+      <section class="pricing story" id="pricing">
+        <div class="story-heading centered reveal">
+          <p class="eyebrow"><span></span> Simple licensing</p>
+          <h2>Try every licensed feature for 14 days.</h2>
+          <p>Your trial starts after your first successful mailbox sync. No email, account, payment method, or verification code is required. Purchase only when Cove Mail has earned a place on your Mac.</p>
+        </div>
+        <div class="pricing-grid reveal" aria-label="Cove Mail purchase plans">
+          <article class="price-card">
+            <p class="plan-label">Monthly</p>
+            <p class="plan-price"><strong data-price="month">Loading…</strong><span>per month</span></p>
+            <p>Pay month to month. Cancel future renewal through Paddle.</p>
+            <button class="button primary purchase-button" type="button" data-plan="month" disabled>
+              Choose monthly <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+          <article class="price-card featured">
+            <p class="plan-label">Annual</p>
+            <p class="plan-price"><strong data-price="year">Loading…</strong><span>per year</span></p>
+            <p>One annual payment with the same licensed features.</p>
+            <button class="button primary purchase-button" type="button" data-plan="year" disabled>
+              Choose annual <span aria-hidden="true">↗</span>
+            </button>
+          </article>
+        </div>
+        <p class="checkout-status" data-checkout-status role="status" aria-live="polite">Loading secure Paddle pricing…</p>
+        <p class="purchase-boundary">Browser checkout does not unlock Cove Mail. Paid access starts only after Cove Mail verifies Paddle’s signed event and sends your activation link.</p>
+      </section>
+
       <section class="story connection-story" id="connect">
         <div class="story-heading reveal">
           <p class="eyebrow coral"><span></span> Optional by design</p>
@@ -184,7 +219,7 @@
     <footer class="footer">
       <a class="footer-brand" href="#home"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>A native, multi-provider Mac email client.</small></span></a>
       <p>Cove Mail is a functional development build and is not yet release-ready.</p>
-      <nav aria-label="Footer navigation"><a href="#native">Product</a><a href="#connect">AI connection</a><a href="./privacy-policy.html">Privacy</a></nav>
+      <nav aria-label="Footer navigation"><a href="#native">Product</a><a href="#pricing">Pricing</a><a href="#connect">AI connection</a><a href="./privacy-policy.html">Privacy</a></nav>
       <small>© <span data-current-year></span> Cove Mail</small>
     </footer>
   </body>
