@@ -18,25 +18,31 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
   node.textContent = String(new Date().getFullYear());
 });
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 const revealNodes = [...document.querySelectorAll(".reveal")];
-const motionSupported = !reducedMotion && "IntersectionObserver" in window;
+const motionSupported = "IntersectionObserver" in window;
+let disableMotion = () => {};
+let enableMotion = () => {};
 
 if (!motionSupported) {
   revealNodes.forEach((node) => node.classList.add("is-visible"));
 } else {
-  const initialRevealBoundary = innerHeight * 0.92;
-  revealNodes.forEach((node) => {
-    const bounds = node.getBoundingClientRect();
-    if (bounds.top < initialRevealBoundary && bounds.bottom > 0) {
-      node.classList.add("is-visible");
-    }
-  });
+  if (motionPreference.matches) {
+    revealNodes.forEach((node) => node.classList.add("is-visible"));
+  } else {
+    const initialRevealBoundary = innerHeight * 0.92;
+    revealNodes.forEach((node) => {
+      const bounds = node.getBoundingClientRect();
+      if (bounds.top < initialRevealBoundary && bounds.bottom > 0) {
+        node.classList.add("is-visible");
+      }
+    });
 
-  document.body.classList.add("motion-ready");
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => document.body.classList.add("page-loaded"));
-  });
+    document.body.classList.add("motion-ready");
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => document.body.classList.add("page-loaded"));
+    });
+  }
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -51,18 +57,33 @@ if (!motionSupported) {
   );
   revealNodes.filter((node) => !node.classList.contains("is-visible")).forEach((node) => observer.observe(node));
 
+  const motionScenes = [...document.querySelectorAll("[data-motion-scene]")];
+  const visibleMotionScenes = new Set();
+  const updateMotionScenes = () => {
+    const canAnimate = !document.hidden && !motionPreference.matches;
+    motionScenes.forEach((scene) => {
+      scene.classList.toggle("is-motion-active", canAnimate && visibleMotionScenes.has(scene));
+    });
+  };
+  const sceneObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) visibleMotionScenes.add(entry.target);
+      else visibleMotionScenes.delete(entry.target);
+    });
+    updateMotionScenes();
+  }, { threshold: 0.08 });
+  motionScenes.forEach((scene) => sceneObserver.observe(scene));
+
   const compassWindow = document.querySelector(".compass-window");
   const compassInput = compassWindow?.querySelector(".compass-input strong");
   const compassResults = [...(compassWindow?.querySelectorAll(".compass-result") ?? [])];
+  let compassObserver;
+  let startCompassMotion = () => {};
+  let stopCompassMotion = () => {};
 
   if (compassWindow && compassInput && compassResults.length) {
     const defaultInput = compassInput.textContent;
-    const demonstrations = [
-      { query: "Compose a new message", result: 0 },
-      { query: "from:Mara Voss", result: 1 },
-      { query: "Inbox", result: 2 },
-      { query: "MCP settings", result: 3 },
-    ];
+    const demonstration = { query: "from:Maya Lin", result: 1 };
     let compassInView = false;
     let compassRunning = false;
     let compassGeneration = 0;
@@ -79,38 +100,27 @@ if (!motionSupported) {
       restoreCompass();
     };
     const startCompass = async () => {
-      if (compassRunning || !compassInView || document.hidden) return;
+      if (compassRunning || !compassInView || document.hidden || motionPreference.matches) return;
       compassRunning = true;
       const generation = ++compassGeneration;
-      let demonstrationIndex = 0;
       compassWindow.classList.add("is-simulating");
 
-      while (compassRunning && generation === compassGeneration) {
-        const demonstration = demonstrations[demonstrationIndex];
-        compassInput.textContent = "";
-        compassResults.forEach((result) => result.classList.remove("active"));
-
-        for (const character of demonstration.query) {
-          if (!compassRunning || generation !== compassGeneration) return;
-          compassInput.textContent += character;
-          await delay(62);
-        }
-
-        compassResults[demonstration.result]?.classList.add("active");
-        await delay(1250);
-
-        while (compassInput.textContent.length) {
-          if (!compassRunning || generation !== compassGeneration) return;
-          compassInput.textContent = compassInput.textContent.slice(0, -1);
-          await delay(28);
-        }
-
-        await delay(260);
-        demonstrationIndex = (demonstrationIndex + 1) % demonstrations.length;
+      compassInput.textContent = "";
+      compassResults.forEach((result) => result.classList.remove("active"));
+      for (const character of demonstration.query) {
+        if (!compassRunning || generation !== compassGeneration) return;
+        compassInput.textContent += character;
+        await delay(62);
       }
+
+      compassResults[demonstration.result]?.classList.add("active");
+      await delay(1650);
+      if (!compassRunning || generation !== compassGeneration) return;
+      compassWindow.classList.remove("is-simulating");
+      compassRunning = false;
     };
 
-    const compassObserver = new IntersectionObserver(([entry]) => {
+    compassObserver = new IntersectionObserver(([entry]) => {
       compassInView = entry.isIntersecting;
       if (compassInView) startCompass();
       else stopCompass();
@@ -121,14 +131,21 @@ if (!motionSupported) {
       if (document.hidden) stopCompass();
       else if (compassInView) startCompass();
     });
+    startCompassMotion = startCompass;
+    stopCompassMotion = stopCompass;
   }
 
   const progress = document.querySelector(".scroll-progress");
+  let scrollRange = 1;
   let frameRequested = false;
   const updateProgress = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    progress?.style.setProperty("--progress", max > 0 ? scrollY / max : 0);
+    const ratio = Math.min(1, Math.max(0, scrollY / scrollRange));
+    if (progress) progress.style.transform = `scaleX(${ratio})`;
     frameRequested = false;
+  };
+  const measureScrollRange = () => {
+    scrollRange = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    updateProgress();
   };
   addEventListener("scroll", () => {
     if (!frameRequested) {
@@ -136,5 +153,35 @@ if (!motionSupported) {
       frameRequested = true;
     }
   }, { passive: true });
-  updateProgress();
+  addEventListener("resize", measureScrollRange, { passive: true });
+  let sizeObserver;
+  if ("ResizeObserver" in window) {
+    sizeObserver = new ResizeObserver(measureScrollRange);
+    sizeObserver.observe(document.body);
+  }
+  measureScrollRange();
+
+  const handleVisibilityChange = () => updateMotionScenes();
+  document.addEventListener("visibilitychange", handleVisibilityChange);
+  disableMotion = () => {
+    stopCompassMotion();
+    motionScenes.forEach((scene) => scene.classList.remove("is-motion-active"));
+    revealNodes.forEach((node) => node.classList.add("is-visible"));
+    document.body.classList.remove("motion-ready");
+  };
+  enableMotion = () => {
+    document.body.classList.add("motion-ready", "page-loaded");
+    updateMotionScenes();
+    startCompassMotion();
+  };
+}
+
+const handleMotionPreferenceChange = (event) => {
+  if (event.matches) disableMotion();
+  else enableMotion();
+};
+if (typeof motionPreference.addEventListener === "function") {
+  motionPreference.addEventListener("change", handleMotionPreferenceChange);
+} else {
+  motionPreference.addListener(handleMotionPreferenceChange);
 }

@@ -17,10 +17,10 @@
     <meta name="twitter:description" content="All of your email in one native Mac app. Bring your own AI when you want it." />
     <meta name="twitter:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=6" />
+    <link rel="stylesheet" href="./styles.css?v=7" />
+    <script defer src="./app.js?v=6"></script>
     <script defer src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script defer src="/site-config.js"></script>
-    <script defer src="./app.js?v=5"></script>
     <script type="module" src="./checkout.js?v=1"></script>
   </head>
   <body>
@@ -55,7 +55,7 @@
           <p class="hero-note">The AI connection is optional. Cove Mail is a complete email client without it.</p>
         </div>
 
-        <div class="hero-stage reveal" aria-label="Illustration of Cove Mail with multiple email accounts">
+        <div class="hero-stage reveal" data-motion-scene role="img" aria-label="Cove Mail showing a unified inbox with two synced email accounts">
           <div class="orbit orbit-one" aria-hidden="true"></div>
           <div class="orbit orbit-two" aria-hidden="true"></div>
           <div class="mac-window hero-window">
@@ -104,26 +104,32 @@
           <h2>A modern way to access email. A familiar way to use it.</h2>
           <p>Cove Mail puts everyday email at the center: a readable inbox, fast local search, proper compose and drafts, and clear account status. It works as a complete client on its own, with an assistant only when you choose.</p>
         </div>
-        <div class="native-demo reveal">
+        <div class="native-demo reveal" data-motion-scene>
           <div class="demo-caption"><span>Compass</span><strong>From thought to action in one shortcut.</strong><p>Press Command-K to compose, search mail, open a mailbox, or jump into Settings.</p></div>
-          <div class="compass-window" aria-label="Illustration of Compass in Cove Mail">
-            <div class="compass-input"><span>⌕</span><strong>Search mail or go anywhere</strong><kbd>⌘ K</kbd></div>
-            <p>Quick actions</p>
-            <div class="compass-result active"><span>✎</span><strong>Compose new message</strong><kbd>↵</kbd></div>
-            <div class="compass-result"><span>⌕</span><strong>Search by sender or subject</strong><small>Mail search</small></div>
-            <div class="compass-result"><span>▣</span><strong>Go to Inbox</strong><small>Work Gmail</small></div>
-            <div class="compass-result"><span>⚙</span><strong>Open MCP Settings</strong><small>Settings</small></div>
+          <div class="compass-scene">
+            <div class="compass-window" role="img" aria-label="Compass finding a command or message from one keyboard shortcut">
+              <div class="compass-input"><span>⌕</span><strong>Search mail or go anywhere</strong><kbd>⌘ K</kbd></div>
+              <p>Quick actions</p>
+              <div class="compass-result active"><span>✎</span><strong>Compose new message</strong><kbd>↵</kbd></div>
+              <div class="compass-result"><span>⌕</span><strong>Search by sender or subject</strong><small>Mail search</small></div>
+              <div class="compass-result"><span>▣</span><strong>Go to Inbox</strong><small>Work Gmail</small></div>
+              <div class="compass-result"><span>⚙</span><strong>Open MCP Settings</strong><small>Settings</small></div>
+            </div>
+            <div class="floating-chip compass-shortcut-chip" aria-hidden="true"><kbd>⌘ K</kbd><span><strong>One shortcut</strong><small>Compose, search, or go</small></span></div>
+            <div class="floating-chip compass-search-chip" aria-hidden="true"><i>⌕</i><span><strong>Local search</strong><small>Across every inbox</small></span></div>
           </div>
         </div>
       </section>
 
       <section class="story account-story" id="accounts">
-        <div class="account-visual reveal" aria-label="Cove Mail account list illustration">
+        <div class="account-visual reveal" data-motion-scene role="img" aria-label="Gmail, iCloud, and IMAP accounts together in Cove Mail">
           <div class="account-rings" aria-hidden="true"></div>
           <div class="account-card front"><img src="./assets/cove-mail-mark.svg" alt="" /><span><small>Cove Mail · 3 accounts</small><strong>Multiple inboxes, one app</strong></span><em>✓</em></div>
           <div class="account-card back back-one"><i class="provider gmail">G</i><span><small>Gmail</small><strong>Work</strong></span><em>7</em></div>
           <div class="account-card back back-two"><i class="provider icloud">●</i><span><small>iCloud</small><strong>Personal</strong></span><em>5</em></div>
           <div class="account-card back back-three"><i class="provider imap">@</i><span><small>IMAP</small><strong>Studio</strong></span><em>0</em></div>
+          <div class="floating-chip account-sync-chip" aria-hidden="true"><i class="status-dot"></i><span><strong>All current</strong><small>Three accounts synced</small></span></div>
+          <div class="floating-chip account-search-chip" aria-hidden="true"><i>⌕</i><span><strong>One search</strong><small>Every connected inbox</small></span></div>
         </div>
         <div class="story-heading reveal">
           <p class="eyebrow"><span></span> Provider independent</p>
@@ -143,23 +149,26 @@
           <h2>Try every licensed feature for 14 days.</h2>
           <p>Your trial starts after your first successful mailbox sync. No email, account, payment method, or verification code is required. Purchase only when Cove Mail has earned a place on your Mac.</p>
         </div>
-        <div class="pricing-grid reveal" aria-label="Cove Mail purchase plans">
-          <article class="price-card">
-            <p class="plan-label">Monthly</p>
-            <p class="plan-price"><strong data-price="month">Loading…</strong><span>per month</span></p>
-            <p>Pay month to month. Cancel future renewal through Paddle.</p>
-            <button class="button primary purchase-button" type="button" data-plan="month" disabled>
-              Choose monthly <span aria-hidden="true">↗</span>
-            </button>
-          </article>
-          <article class="price-card featured">
-            <p class="plan-label">Annual</p>
-            <p class="plan-price"><strong data-price="year">Loading…</strong><span>per year</span></p>
-            <p>One annual payment with the same licensed features.</p>
-            <button class="button primary purchase-button" type="button" data-plan="year" disabled>
-              Choose annual <span aria-hidden="true">↗</span>
-            </button>
-          </article>
+        <div class="pricing-scene reveal" data-motion-scene>
+          <div class="floating-chip trial-chip" aria-hidden="true"><i>14</i><span><strong>Full-featured days</strong><small>Starts after first sync</small></span></div>
+          <div class="pricing-grid" role="group" aria-label="Cove Mail purchase plans">
+            <article class="price-card">
+              <p class="plan-label">Monthly</p>
+              <p class="plan-price"><strong data-price="month">Loading…</strong><span>per month</span></p>
+              <p>Pay month to month. Cancel future renewal through Paddle.</p>
+              <button class="button primary purchase-button" type="button" data-plan="month" disabled>
+                Choose monthly <span aria-hidden="true">↗</span>
+              </button>
+            </article>
+            <article class="price-card featured">
+              <p class="plan-label">Annual</p>
+              <p class="plan-price"><strong data-price="year">Loading…</strong><span>per year</span></p>
+              <p>One annual payment with the same licensed features.</p>
+              <button class="button primary purchase-button" type="button" data-plan="year" disabled>
+                Choose annual <span aria-hidden="true">↗</span>
+              </button>
+            </article>
+          </div>
         </div>
         <p class="checkout-status" data-checkout-status role="status" aria-live="polite">Loading secure Paddle pricing…</p>
         <p class="purchase-boundary">Browser checkout does not unlock Cove Mail. Paid access starts only after Cove Mail verifies Paddle’s signed event and sends your activation link.</p>
@@ -172,7 +181,7 @@
           <p>AI access to email is often treated as all or nothing. Cove Mail takes a more deliberate approach: connect a compatible cloud assistant or local model, then choose the accounts and capabilities it can use.</p>
         </div>
 
-        <div class="connection-demo reveal" aria-label="A permitted request flowing between a separate AI assistant and Cove Mail">
+        <div class="connection-demo reveal" data-motion-scene role="group" aria-label="Example of a permitted AI request through Cove Mail">
           <div class="connection-node assistant-node">
             <span class="node-label">Separate application</span>
             <div class="node-title"><i>AI</i><span><strong>Your assistant</strong><small>Compatible cloud or local model</small></span></div>
@@ -183,6 +192,7 @@
             <span class="node-label">On this Mac</span>
             <div class="node-title"><img src="./assets/cove-mail-mark-dark.svg" alt="" /><span><strong>Cove Mail</strong><small>Local MCP connection</small></span></div>
             <div class="permission-list"><span><i>✓</i> Work Gmail</span><span><i>✓</i> Search metadata</span><span class="off"><i>×</i> Send or delete</span></div>
+            <div class="floating-chip permission-chip" aria-hidden="true"><i>✓</i><span><strong>Read only</strong><small>Selected scope</small></span></div>
           </div>
           <div class="flow-lane return" aria-hidden="true"><span class="flow-dot"></span><small>Allowed mail data</small></div>
           <div class="connection-node mail-node">
