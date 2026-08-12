@@ -36,7 +36,10 @@ test("opens the selected price in Paddle overlay checkout", () => {
   const plans = normalizeCatalog(catalog, "sandbox");
   assert.deepEqual(checkoutOptions(plans.get("month")), {
     items: [{ priceId: "pri_month", quantity: 1 }],
-    settings: { displayMode: "overlay" },
+    settings: {
+      displayMode: "overlay",
+      theme: "dark",
+    },
   });
 });
 

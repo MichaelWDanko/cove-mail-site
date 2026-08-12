@@ -53,7 +53,10 @@ export function checkoutItems(plan) {
 export function checkoutOptions(plan) {
   return {
     items: checkoutItems(plan),
-    settings: { displayMode: "overlay" },
+    settings: {
+      displayMode: "overlay",
+      theme: "dark",
+    },
   };
 }
 
