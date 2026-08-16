@@ -3,12 +3,16 @@ const ENVIRONMENTS = Object.freeze({
     paddleEnvironment: "sandbox",
     catalogEnvironment: "sandbox",
     catalogURL: "https://api.staging.covemail.ai/v1/commerce/catalog",
+    recoveryURL: "https://api.staging.covemail.ai/v1/recovery-requests",
+    customerPortalURL: "https://sandbox-customer-portal.paddle.com/",
     tokenPrefix: "test_",
   }),
   production: Object.freeze({
     paddleEnvironment: "production",
     catalogEnvironment: "production",
     catalogURL: "https://api.covemail.ai/v1/commerce/catalog",
+    recoveryURL: "https://api.covemail.ai/v1/recovery-requests",
+    customerPortalURL: "https://customer-portal.paddle.com/",
     tokenPrefix: "live_",
   }),
 });
@@ -24,6 +28,15 @@ const CATALOG_HEADERS = Object.freeze({
   "Content-Type": "application/json; charset=utf-8",
   "X-Content-Type-Options": "nosniff",
 });
+
+const RECOVERY_HEADERS = Object.freeze({
+  "Cache-Control": "no-store",
+  "Content-Type": "application/json; charset=utf-8",
+  "X-Content-Type-Options": "nosniff",
+});
+
+const EMAIL = /^[^@\s]+@[^@\s]+$/;
+const RECOVERY_ACCEPTED = Object.freeze({ accepted: true });
 
 export function resolveRuntimeConfig(env) {
   const siteEnvironment = env.COVE_SITE_ENV;
@@ -46,6 +59,9 @@ export function resolveRuntimeConfig(env) {
     catalogPath: "/api/catalog",
     catalogEnvironment: configuration.catalogEnvironment,
     catalogURL: configuration.catalogURL,
+    recoveryPath: "/api/license-recovery",
+    recoveryURL: configuration.recoveryURL,
+    customerPortalURL: configuration.customerPortalURL,
   });
 }
 
@@ -89,9 +105,80 @@ function configurationScript(config) {
     clientToken: config.clientToken,
     catalogPath: config.catalogPath,
     catalogEnvironment: config.catalogEnvironment,
+    recoveryPath: config.recoveryPath,
+    customerPortalURL: config.customerPortalURL,
   };
 
   return `window.__COVE_SITE_CONFIG__ = Object.freeze(${JSON.stringify(publicConfig)});\n`;
+}
+
+export function validateRecoveryRequest(value) {
+  if (
+    !value ||
+    typeof value !== "object" ||
+    Array.isArray(value) ||
+    Object.keys(value).length !== 1 ||
+    !Object.hasOwn(value, "licensingEmail") ||
+    typeof value.licensingEmail !== "string" ||
+    !EMAIL.test(value.licensingEmail) ||
+    value.licensingEmail.length > 320
+  ) {
+    throw new Error("Invalid recovery request.");
+  }
+
+  return {
+    licensingEmail: value.licensingEmail.toLowerCase(),
+    idempotencyKey: crypto.randomUUID(),
+  };
+}
+
+export async function forwardRecovery(config, recoveryRequest, fetcher = fetch) {
+  try {
+    await fetcher(config.recoveryURL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(recoveryRequest),
+    });
+  } catch {
+    // The public response stays generic so delivery state cannot reveal an account.
+  }
+}
+
+export async function acceptRecovery(config, request, context, fetcher = fetch) {
+  const contentType = request.headers.get("Content-Type")?.split(";", 1)[0].trim().toLowerCase();
+  if (contentType !== "application/json") {
+    return Response.json(
+      { accepted: false },
+      { status: 415, headers: RECOVERY_HEADERS },
+    );
+  }
+
+  const rawBody = await request.text();
+  if (rawBody.length > 2048) {
+    return Response.json(
+      { accepted: false },
+      { status: 400, headers: RECOVERY_HEADERS },
+    );
+  }
+
+  let recoveryRequest;
+  try {
+    recoveryRequest = validateRecoveryRequest(JSON.parse(rawBody));
+  } catch {
+    return Response.json(
+      { accepted: false },
+      { status: 400, headers: RECOVERY_HEADERS },
+    );
+  }
+
+  const forwarding = forwardRecovery(config, recoveryRequest, fetcher);
+  if (typeof context?.waitUntil === "function") context.waitUntil(forwarding);
+  else await forwarding;
+
+  return Response.json(RECOVERY_ACCEPTED, { status: 202, headers: RECOVERY_HEADERS });
 }
 
 async function proxyCatalog(config) {
@@ -117,7 +204,7 @@ async function proxyCatalog(config) {
 }
 
 const worker = {
-  async fetch(request, env) {
+  async fetch(request, env, context) {
     const url = new URL(request.url);
 
     try {
@@ -131,6 +218,12 @@ const worker = {
         }
         return proxyCatalog(config);
       }
+      if (url.pathname === "/api/license-recovery") {
+        if (request.method !== "POST") {
+          return new Response("Method not allowed.", { status: 405, headers: { Allow: "POST" } });
+        }
+        return acceptRecovery(config, request, context);
+      }
     } catch {
       if (url.pathname === "/site-config.js") {
         return new Response(
@@ -142,6 +235,12 @@ const worker = {
         return Response.json(
           { error: "Pricing is not configured." },
           { status: 503, headers: CATALOG_HEADERS },
+        );
+      }
+      if (url.pathname === "/api/license-recovery") {
+        return Response.json(
+          RECOVERY_ACCEPTED,
+          { status: 202, headers: RECOVERY_HEADERS },
         );
       }
     }

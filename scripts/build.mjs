@@ -16,6 +16,7 @@ for (const file of [
   "app.js",
   "checkout.js",
   "index.html",
+  "license.js",
   "privacy-policy.html",
   "styles.css",
 ]) {
@@ -29,6 +30,7 @@ const requiredFiles = [
   "dist/server/index.js",
   "dist/client/index.html",
   "dist/client/checkout.js",
+  "dist/client/license.js",
   "dist/.openai/hosting.json",
 ];
 for (const path of requiredFiles) {

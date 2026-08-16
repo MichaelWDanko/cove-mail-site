@@ -41,9 +41,12 @@ async function serveAsset(request) {
 }
 
 const server = createServer(async (incoming, outgoing) => {
+  const hasBody = incoming.method !== "GET" && incoming.method !== "HEAD";
   const request = new Request(`http://127.0.0.1:${port}${incoming.url}`, {
     method: incoming.method,
     headers: incoming.headers,
+    body: hasBody ? incoming : undefined,
+    duplex: hasBody ? "half" : undefined,
   });
   const response = await worker.fetch(request, {
     ...loadLocalEnvironment(),
