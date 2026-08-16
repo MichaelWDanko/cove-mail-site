@@ -57,13 +57,20 @@ test("activation result uses the required non-enumerating message", () => {
   assert.doesNotMatch(licenseScript, /api(?:\.staging)?\.covemail\.ai/);
 });
 
-test("Manage license is discoverable and activation asks for only an email", () => {
-  assert.match(html, /<a href="#manage-license">Manage license<\/a>/);
+test("subscription management is discoverable and activation asks for only an email", () => {
+  assert.equal(
+    html.match(/<a href="#manage-license">Manage your subscription<\/a>/g)?.length,
+    2,
+  );
   const section = html.slice(
     html.indexOf('<section class="license-management story"'),
     html.indexOf('<section class="story connection-story"'),
   );
   assert.match(section, /data-customer-portal/);
+  assert.match(section, /target="_blank"/);
+  assert.match(section, /rel="noopener noreferrer"/);
+  assert.match(section, /aria-label="Manage your subscription in Paddle \(opens in a new tab\)"/);
+  assert.match(section, />\s*Manage your subscription\s*<span/);
   assert.equal(section.match(/<input\b/g)?.length, 1);
   assert.match(section, /name="licensingEmail"[\s\S]*type="email"/);
   assert.match(section, /method="post"[\s\S]*action="\/api\/license-recovery"/);
