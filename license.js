@@ -7,6 +7,49 @@ const TRUSTED_PORTAL_HOSTS = new Set([
   "sandbox-customer-portal.paddle.com",
 ]);
 
+const TRUSTED_RECOVERY_ENDPOINTS = Object.freeze({
+  sandbox: Object.freeze({
+    hostname: "api.staging.covemail.ai",
+    pathname: "/v1/recovery-requests",
+  }),
+  production: Object.freeze({
+    hostname: "api.covemail.ai",
+    pathname: "/v1/recovery-requests",
+  }),
+});
+
+function isValidRecoveryPath(value, environment) {
+  if (typeof value !== "string" || value.length === 0) return false;
+
+  let recoveryURL;
+  try {
+    recoveryURL = new URL(value, "https://covemail.ai");
+  } catch {
+    return false;
+  }
+
+  if (value.startsWith("/")) {
+    return (
+      recoveryURL.origin === "https://covemail.ai" &&
+      recoveryURL.pathname === "/api/license-recovery" &&
+      !recoveryURL.search &&
+      !recoveryURL.hash
+    );
+  }
+
+  const expectedEndpoint = TRUSTED_RECOVERY_ENDPOINTS[environment];
+  return (
+    recoveryURL.protocol === "https:" &&
+    recoveryURL.hostname === expectedEndpoint.hostname &&
+    recoveryURL.port === "" &&
+    recoveryURL.username === "" &&
+    recoveryURL.password === "" &&
+    recoveryURL.pathname === expectedEndpoint.pathname &&
+    !recoveryURL.search &&
+    !recoveryURL.hash
+  );
+}
+
 export function validateLicenseConfig(config) {
   if (!config || (config.environment !== "sandbox" && config.environment !== "production")) {
     throw new Error("License self-service is not configured.");
@@ -17,7 +60,7 @@ export function validateLicenseConfig(config) {
     ? "sandbox-customer-portal.paddle.com"
     : "customer-portal.paddle.com";
   if (
-    config.recoveryPath !== "/api/license-recovery" ||
+    !isValidRecoveryPath(config.recoveryPath, config.environment) ||
     portalURL.protocol !== "https:" ||
     portalURL.hostname !== expectedPortalHost ||
     !TRUSTED_PORTAL_HOSTS.has(portalURL.hostname) ||

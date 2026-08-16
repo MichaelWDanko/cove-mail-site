@@ -65,6 +65,13 @@ test("rejects a production token in sandbox configuration", () => {
   );
 });
 
+test("accepts the static catalog path used by GitHub Pages", () => {
+  assert.equal(
+    validateSiteConfig({ ...sandboxConfig, catalogPath: "./catalog.json" }).catalogPath,
+    "./catalog.json",
+  );
+});
+
 test("uses localized PricePreview values for both plans", async () => {
   const calls = [];
   const Paddle = {

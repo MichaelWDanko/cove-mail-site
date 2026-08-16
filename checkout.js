@@ -7,12 +7,22 @@ export function validateSiteConfig(config) {
 
   const expectedPaddleEnvironment = config.environment === "sandbox" ? "sandbox" : "production";
   const expectedTokenPrefix = config.environment === "sandbox" ? "test_" : "live_";
+  let catalogURL;
+  try {
+    catalogURL = new URL(config.catalogPath, "https://covemail.ai");
+  } catch {
+    throw new Error("The purchase configuration mixes Paddle environments.");
+  }
   if (
     config.paddleEnvironment !== expectedPaddleEnvironment ||
     config.catalogEnvironment !== config.environment ||
     typeof config.clientToken !== "string" ||
     !config.clientToken.startsWith(expectedTokenPrefix) ||
-    config.catalogPath !== "/api/catalog"
+    catalogURL.protocol !== "https:" ||
+    catalogURL.origin !== "https://covemail.ai" ||
+    catalogURL.search ||
+    catalogURL.hash ||
+    !["/api/catalog", "/catalog.json"].includes(catalogURL.pathname)
   ) {
     throw new Error("The purchase configuration mixes Paddle environments.");
   }

@@ -34,16 +34,52 @@ The same-origin worker route avoids adding cross-origin browser access to the
 licensing API. GitHub Pages can serve the static files, but it cannot run the
 worker routes needed for checkout configuration, pricing, or license recovery.
 
-## Environment configuration
+## Deployment model
 
-Set these runtime values:
+The repository uses two deployment paths:
 
-- `COVE_SITE_ENV=sandbox` with a `test_` Paddle client-side token for staging.
-- `COVE_SITE_ENV=production` with a `live_` Paddle client-side token for release.
+- `main` deploys to the private ChatGPT Sites staging project. It uses the
+  worker runtime and sandbox Paddle configuration.
+- `release` deploys the static production site to GitHub Pages at
+  `https://covemail.ai` through `.github/workflows/pages.yml`.
 
-The worker selects the corresponding fixed catalog, recovery, and Paddle portal
-destinations. It rejects a token from the other environment. Paddle client-side
-tokens are browser-safe. Do not use a Paddle API key or webhook secret here.
+GitHub Pages receives `dist-pages/`, which contains only static files. Its
+configuration and catalog are generated during the release build. The Paddle
+client-side token and price IDs are public browser configuration, but API keys,
+webhook secrets, and database credentials must never be placed in this
+repository or the Pages artifact.
+
+## Static Pages configuration
+
+The GitHub Pages workflow requires these repository or environment variables:
+
+- `COVE_PADDLE_CLIENT_TOKEN`, using the production `live_` client-side token.
+- `COVE_MONTHLY_PRICE_ID`, using the production monthly Paddle price ID.
+- `COVE_ANNUAL_PRICE_ID`, using the production annual Paddle price ID.
+- `COVE_PADDLE_PRODUCT_ID`, when a product ID is available for the catalog.
+
+The static production build uses `/catalog.json` for the two price IDs, calls
+Paddle's browser SDK for localized price preview, and sends recovery requests
+to `https://api.covemail.ai/v1/recovery-requests`. That API must allow CORS
+from `https://covemail.ai` before the activation form can work from GitHub
+Pages. The subscription portal link is environment-specific static
+configuration.
+
+Run the static build locally with:
+
+```sh
+COVE_SITE_ENV=production \
+COVE_PADDLE_CLIENT_TOKEN=live_replace_with_client_token \
+COVE_MONTHLY_PRICE_ID=pri_replace_with_monthly_price_id \
+COVE_ANNUAL_PRICE_ID=pri_replace_with_annual_price_id \
+npm run build:pages
+```
+
+Configure GitHub Pages to use the GitHub Actions publishing source. Keep
+`CNAME` set to `covemail.ai` and configure that custom domain in the repository
+Pages settings. The production licensing API, Paddle webhooks, entitlement
+creation, and recovery email service remain external dynamic services. GitHub
+Pages hosts only the public site.
 
 ## Local validation
 
@@ -65,4 +101,5 @@ to preview prices or open checkout.
 
 The build produces a Cloudflare Workers-compatible `dist/` directory for
 private ChatGPT Sites staging. Runtime values are managed by Sites and are not
-committed. Production deployment is a separate release action.
+committed. Production deployment uses the separate static Pages workflow from
+`release`.

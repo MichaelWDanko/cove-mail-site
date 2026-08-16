@@ -29,6 +29,14 @@ test("uses only the environment-matched Paddle customer portal", () => {
     }).customerPortalURL,
     "https://customer-portal.paddle.com/",
   );
+  assert.equal(
+    validateLicenseConfig({
+      environment: "production",
+      recoveryPath: "https://api.covemail.ai/v1/recovery-requests",
+      customerPortalURL: "https://customer-portal.paddle.com/",
+    }).recoveryPath,
+    "https://api.covemail.ai/v1/recovery-requests",
+  );
   assert.throws(
     () => validateLicenseConfig({
       environment: "production",
@@ -54,7 +62,7 @@ test("activation result uses the required non-enumerating message", () => {
     ACTIVATION_ACCEPTED_MESSAGE,
     "If we find an email associated with the one provided, we will send an activation email back to them.",
   );
-  assert.doesNotMatch(licenseScript, /api(?:\.staging)?\.covemail\.ai/);
+  assert.doesNotMatch(licenseScript, /apiKey|webhook|secret|credential/i);
 });
 
 test("subscription management is discoverable and activation asks for only an email", () => {

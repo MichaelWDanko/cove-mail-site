@@ -8,6 +8,7 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
     "dev": "node scripts/dev-server.mjs",
     "test": "node --test tests/*.test.mjs"
   }

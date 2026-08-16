@@ -2,4 +2,5 @@
 .env.*
 !.env.example
 dist/
+dist-pages/
 node_modules/
