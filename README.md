@@ -1,7 +1,7 @@
 # Cove Mail Site
 
-Landing page, privacy policy, Paddle overlay checkout, and license self-service
-for Cove Mail.
+Landing page, Privacy Policy, Terms of Service, Refund Policy, Paddle overlay
+checkout, and license self-service for Cove Mail.
 
 The site is intended to be hosted with GitHub Pages at:
 

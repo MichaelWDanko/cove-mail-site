@@ -18,7 +18,9 @@ for (const file of [
   "index.html",
   "license.js",
   "privacy-policy.html",
+  "refund-policy.html",
   "styles.css",
+  "terms-of-service.html",
 ]) {
   await cp(resolve(root, file), resolve(client, file));
 }
