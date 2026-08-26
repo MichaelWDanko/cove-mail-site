@@ -21,7 +21,9 @@ for (const file of [
   "index.html",
   "license.js",
   "privacy-policy.html",
+  "refund-policy.html",
   "styles.css",
+  "terms-of-service.html",
 ]) {
   await cp(resolve(root, file), resolve(output, file));
 }
@@ -35,8 +37,11 @@ await writeFile(resolve(output, ".nojekyll"), "");
 const requiredFiles = [
   "dist-pages/CNAME",
   "dist-pages/index.html",
+  "dist-pages/privacy-policy.html",
+  "dist-pages/refund-policy.html",
   "dist-pages/site-config.js",
   "dist-pages/catalog.json",
+  "dist-pages/terms-of-service.html",
   "dist-pages/.nojekyll",
 ];
 for (const path of requiredFiles) {
