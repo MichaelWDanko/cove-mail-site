@@ -3,141 +3,269 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Terms of Service for Cove Mail." />
+    <meta name="description" content="Terms of Service for the Cove Mail app and related services." />
     <title>Cove Mail Terms of Service</title>
     <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=8" />
+    <link rel="stylesheet" href="./styles.css?v=9" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <div class="page-shell">
-      <header class="topbar">
+      <header class="topbar" data-header>
         <a class="brand" href="./index.html" aria-label="Cove Mail home">
-          <img src="./assets/cove-mail-mark.svg" alt="" class="brand-mark" />
-          <span class="brand-copy">
-            <strong>Cove Mail.</strong> <span>Native email. Your choice of AI.</span>
-          </span>
+          <img src="./assets/cove-mail-mark.svg" alt="" />
+          <span>Cove Mail</span>
         </a>
-        <nav class="site-nav policy-nav" aria-label="Primary">
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
           <a href="./index.html">Home</a>
-          <a href="./privacy-policy.html">Privacy</a>
-          <a href="./refund-policy.html">Refunds</a>
+          <a href="./index.html#native">Product</a>
+          <a href="./index.html#accounts">Accounts</a>
+          <a href="./index.html#pricing">Pricing</a>
+          <a href="./index.html#manage-license">Manage your subscription</a>
+          <a href="./index.html#connect">AI connection</a>
         </nav>
       </header>
 
-      <main class="policy-main">
+      <main id="main" class="policy-main">
         <article class="policy-shell">
           <header class="policy-header">
             <p class="section-label">Cove Mail</p>
             <h1>Terms of Service</h1>
-            <p class="policy-updated">Effective date: August 26, 2026</p>
+            <p class="policy-updated">Effective date: September 2, 2026</p>
             <p>
-              These terms govern your download, installation, purchase, and use of Cove Mail.
-              By using Cove Mail, you agree to these terms.
+              These Terms govern your download, purchase, installation, and use of Cove Mail. Cove
+              Mail is a Mac email app operated by Michael Danko. By purchasing or using Cove Mail,
+              you agree to these Terms.
             </p>
           </header>
+
+          <section class="policy-card" aria-labelledby="eligibility-heading">
+            <h2 id="eligibility-heading">Eligibility and Authority</h2>
+            <p>
+              You must be at least 18 years old or old enough to enter a binding contract where you
+              live. If you use Cove Mail for a business or other organization, you confirm that you
+              have authority to accept these Terms for that organization.
+            </p>
+          </section>
 
           <section class="policy-card" aria-labelledby="license-heading">
             <h2 id="license-heading">License to Use Cove Mail</h2>
             <p>
-              Cove Mail grants you a limited, non-exclusive, non-transferable license to install and
-              use the app on supported Macs for your personal or internal business email. You may
-              not resell, sublicense, reverse engineer, or use Cove Mail to violate law or another
-              person's rights, except where applicable law does not permit that restriction.
+              Cove Mail gives you a limited, non-exclusive, non-transferable license to install and
+              use the app for personal or internal business email while you have trial,
+              complimentary, or paid access. One paid license may be active on up to three Macs and
+              is for the purchaser's use. It is not a multi-user or team license.
+            </p>
+            <p>
+              You may not sell, rent, sublicense, distribute, or make Cove Mail available to someone
+              else. You may not bypass its licensing or security controls, interfere with the app
+              or its services, or reverse engineer it except to the extent applicable law allows.
             </p>
           </section>
 
           <section class="policy-card" aria-labelledby="trial-heading">
-            <h2 id="trial-heading">Local Trial</h2>
+            <h2 id="trial-heading">14-Day Trial</h2>
             <p>
-              Cove Mail includes a 14-day local trial that starts after the first successful mailbox
-              sync. The trial does not require payment information and does not automatically become
-              a paid subscription.
+              The trial begins after the first successful email sync and lasts for 14 days. It does
+              not require payment information and does not become a paid subscription
+              automatically. When the trial ends, paid features stop until you activate paid or
+              complimentary access. You can still purchase or recover a license and delete local
+              Cove Mail data.
             </p>
           </section>
 
-          <section class="policy-card" aria-labelledby="purchase-heading">
-            <h2 id="purchase-heading">Purchases and Subscriptions</h2>
+          <section class="policy-card" aria-labelledby="subscription-heading">
+            <h2 id="subscription-heading">Subscriptions and Billing</h2>
             <p>
-              Paid subscriptions are sold and processed by Paddle, the merchant of record. Paddle
-              handles payment, tax, receipts, renewal notices, cancellations, and refunds under its
-              buyer terms. Monthly and annual subscriptions renew automatically until canceled.
-              Cancellation takes effect at the end of the current billing period unless applicable
-              law requires otherwise.
+              Monthly and annual subscriptions are sold by Paddle, the merchant of record. Paddle
+              processes payment, tax, receipts, renewals, billing changes, cancellations, and
+              refunds under the <a href="https://www.paddle.com/legal/buyer-terms" rel="noopener noreferrer">Paddle Buyer Terms</a>.
+              Prices and the billing period are shown before purchase.
             </p>
             <p>
-              You can manage billing and cancel renewal through the Paddle customer portal linked
-              from this website or your purchase receipt. Paid access begins only after Cove Mail
-              verifies Paddle's signed purchase event and issues an activation entitlement.
+              Subscriptions renew automatically until you cancel renewal. You can manage billing
+              or cancel renewal through the Paddle customer portal linked from this website or from
+              your purchase receipt. Unless a refund or applicable law requires otherwise,
+              cancellation stops the next charge and paid access continues until the end of the
+              current billing period.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="activation-heading">
+            <h2 id="activation-heading">Activation and License Checks</h2>
+            <p>
+              Payment alone does not activate the app. Cove Mail provides paid access after Paddle
+              confirms the purchase and Cove Mail activates the license. You may need an internet
+              connection to activate, recover, or periodically verify paid access. Contact support
+              if you need to deactivate a Mac or move a license after reaching the three-Mac limit.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="refund-heading">
+            <h2 id="refund-heading">Cancellations and Refunds</h2>
+            <p>
+              Canceling renewal does not automatically refund a completed charge. Refund requests
+              submitted within 14 calendar days of an initial purchase or renewal are reviewed
+              under the <a href="./refund-policy.html">Cove Mail Refund Policy</a> and
+              <a href="https://www.paddle.com/legal/refund-policy" rel="noopener noreferrer">Paddle's Refund Policy</a>.
+              After 14 days, you may contact Cove Mail support to request an exception. Approved
+              full refunds end the related paid access. Mandatory consumer rights always apply.
             </p>
           </section>
 
           <section class="policy-card" aria-labelledby="accounts-heading">
             <h2 id="accounts-heading">Your Email Accounts and Data</h2>
             <p>
-              You are responsible for the accounts, credentials, messages, and instructions you add
-              to Cove Mail. You must have authority to access each connected account. Email provider,
-              AI assistant, and network services remain subject to their own terms and availability.
+              You are responsible for the email accounts, credentials, messages, and settings you
+              add to Cove Mail. You must have permission to access each account and send from each
+              address. Your use of an email provider remains subject to that provider's terms.
+            </p>
+            <p>
+              Cove Mail stores local copies to provide the app's features, but it is not an
+              independent backup of your email account. Keep any backups you need. Removing local
+              Cove Mail data does not delete information held by your email provider.
             </p>
           </section>
 
-          <section class="policy-card" aria-labelledby="automation-heading">
-            <h2 id="automation-heading">Automation and AI Connections</h2>
+          <section class="policy-card" aria-labelledby="ai-heading">
+            <h2 id="ai-heading">External AI Assistants</h2>
             <p>
-              Local automation is optional. You control which accounts and capabilities are enabled.
-              Review requests and results before relying on an assistant, especially before sending,
-              moving, or deleting mail. You are responsible for actions you authorize through a
-              connected assistant.
+              Cove Mail does not include an AI model. Connecting an external AI assistant is
+              optional. You choose the email accounts and actions it can use. Once an action is
+              enabled, the assistant can run it without another approval from Cove Mail. Review the
+              assistant's requests and your Cove Mail settings before allowing it to read, draft,
+              send, move, or delete email.
             </p>
+            <p>
+              You are responsible for actions you authorize through a connected assistant. The
+              assistant and its provider are separate services with their own terms, privacy
+              practices, output, and availability.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="use-heading">
+            <h2 id="use-heading">Acceptable Use</h2>
+            <p>You may not use Cove Mail to:</p>
+            <ul class="policy-list">
+              <li>break the law or violate another person's rights;</li>
+              <li>access an email account without permission;</li>
+              <li>send spam, malware, or deceptive messages;</li>
+              <li>damage, overload, probe, or disrupt Cove Mail or its online services; or</li>
+              <li>avoid payment or misuse a trial, license, refund, or subscription.</li>
+            </ul>
           </section>
 
           <section class="policy-card" aria-labelledby="updates-heading">
-            <h2 id="updates-heading">Updates and Availability</h2>
+            <h2 id="updates-heading">Updates, Availability, and Support</h2>
             <p>
-              Cove Mail may provide security, compatibility, and feature updates. Email providers
-              and operating systems can change in ways that affect the app. Cove Mail may suspend a
-              service when needed for security, maintenance, law, or abuse prevention.
+              We may provide updates for security, compatibility, or features. Email providers,
+              AI providers, macOS, and other services can change in ways that affect Cove Mail. We
+              do not guarantee that every provider or feature will always be available. We may
+              suspend an online service when reasonably needed for maintenance, security, legal
+              compliance, or abuse prevention.
+            </p>
+            <p>
+              Support is available by email, but we do not promise a specific response or
+              resolution time unless required by law.
             </p>
           </section>
 
-          <section class="policy-card" aria-labelledby="warranty-heading">
-            <h2 id="warranty-heading">Warranty and Liability</h2>
+          <section class="policy-card" aria-labelledby="ownership-heading">
+            <h2 id="ownership-heading">Ownership</h2>
             <p>
-              Cove Mail is provided on an as-available basis. To the maximum extent allowed by law,
-              Cove Mail disclaims implied warranties and is not liable for indirect, incidental,
-              special, consequential, or punitive damages. Nothing in these terms limits rights or
-              remedies that cannot be limited under applicable law.
+              Cove Mail, its design, software, and documentation are owned by Michael Danko or the
+              applicable licensors. These Terms give you permission to use Cove Mail but do not
+              transfer ownership of the product or its intellectual property.
             </p>
           </section>
 
           <section class="policy-card" aria-labelledby="termination-heading">
-            <h2 id="termination-heading">Termination and Changes</h2>
+            <h2 id="termination-heading">Suspension and Termination</h2>
             <p>
-              You may stop using Cove Mail at any time. Cove Mail may end or suspend access for a
-              material breach, unlawful use, fraud, or security risk. Updated terms will be posted
-              here with a new effective date. Material changes apply prospectively unless law
-              requires another approach.
+              You may stop using Cove Mail at any time. We may suspend or end access for a material
+              breach of these Terms, unlawful use, fraud, a payment dispute, or a serious security
+              risk. We will provide notice when reasonably possible. A refund can end paid access
+              as explained in the Refund Policy. Ending access does not automatically delete local
+              email data from your Mac.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="warranty-heading">
+            <h2 id="warranty-heading">Warranty Disclaimer</h2>
+            <p>
+              Cove Mail is provided "as is" and "as available." To the extent allowed by law, we
+              do not make implied warranties or promise that Cove Mail will always be uninterrupted,
+              error-free, or compatible with every provider or service. This does not limit any
+              warranty or consumer right that cannot be excluded.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="liability-heading">
+            <h2 id="liability-heading">Limits on Liability</h2>
+            <p>
+              To the extent allowed by law, Cove Mail and Michael Danko are not liable for indirect,
+              incidental, special, consequential, exemplary, or punitive damages, or for lost
+              profits, revenue, business, goodwill, or data. Our total liability for claims related
+              to Cove Mail will not exceed the amount you paid for Cove Mail during the 12 months
+              before the event that caused the claim.
+            </p>
+            <p>
+              Some places do not allow certain exclusions or limits. In those places, these limits
+              apply only to the extent permitted by law. Nothing in these Terms excludes liability
+              that cannot legally be excluded.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="disputes-heading">
+            <h2 id="disputes-heading">Questions and Disputes</h2>
+            <p>
+              Contact us first if you have a concern about Cove Mail so we can try to resolve it.
+              Paddle handles disputes about payments it processed under its Buyer Terms. These
+              Terms do not limit rights or remedies available under mandatory law.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="changes-heading">
+            <h2 id="changes-heading">Changes to These Terms</h2>
+            <p>
+              We may update these Terms as Cove Mail or the law changes. We will post the updated
+              Terms here with a new effective date and provide additional notice when required.
+              Changes apply going forward and do not remove rights that already apply to an earlier
+              purchase.
+            </p>
+          </section>
+
+          <section class="policy-card" aria-labelledby="general-heading">
+            <h2 id="general-heading">General Terms</h2>
+            <p>
+              These Terms, the Privacy Policy, and the Refund Policy are the agreement between you
+              and Cove Mail about the product. If one part is unenforceable, the remaining parts
+              continue to apply. A delay in enforcing a term does not waive the right to enforce it
+              later.
             </p>
           </section>
 
           <section class="policy-card" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact</h2>
             <p>
-              Questions about these terms can be sent to
-              <a href="mailto:covemailapp@gmail.com">covemailapp@gmail.com</a>.
+              Questions about these Terms can be sent to
+              <a href="mailto:covemailapp@gmail.com">covemailapp@gmail.com</a>. Cove Mail is
+              operated by Michael Danko.
             </p>
           </section>
         </article>
       </main>
 
       <footer class="footer">
-        <p>© <span data-current-year>2026</span> Cove Mail</p>
-        <nav class="footer-links" aria-label="Footer">
-          <a href="./index.html">Home</a>
-          <a href="./privacy-policy.html">Privacy</a>
-          <a href="./refund-policy.html">Refunds</a>
-        </nav>
+        <a class="footer-brand" href="./index.html"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>Email for Mac with support for iCloud, Gmail, and IMAP.</small></span></a>
+        <p>Questions about Cove Mail or your license? <a href="mailto:covemailapp@gmail.com">Contact support</a>.</p>
+        <nav aria-label="Footer navigation"><a data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download</a><a href="./index.html">Home</a><a href="./index.html#native">Product</a><a href="./index.html#accounts">Accounts</a><a href="./index.html#pricing">Pricing</a><a href="./index.html#manage-license">Manage your subscription</a><a href="./index.html#connect">AI connection</a><a href="./privacy-policy.html">Privacy Policy</a><a href="./terms-of-service.html" aria-current="page">Terms of Service</a><a href="./refund-policy.html">Refund Policy</a></nav>
+        <small>© <span data-current-year></span> Cove Mail</small>
       </footer>
     </div>
+
     <script defer src="./app.js?v=6"></script>
   </body>
 </html>

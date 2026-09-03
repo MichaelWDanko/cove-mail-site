@@ -67,7 +67,7 @@ test("activation result uses the required non-enumerating message", () => {
 
 test("subscription management is discoverable and activation asks for only an email", () => {
   assert.equal(
-    html.match(/<a href="#manage-license">Manage your subscription<\/a>/g)?.length,
+    html.match(/<a href="\.\/index\.html#manage-license">Manage your subscription<\/a>/g)?.length,
     2,
   );
   const section = html.slice(
