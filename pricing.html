@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Cove Mail pricing and 14-day trial details." />
+    <title>Cove Mail Pricing</title>
+    <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=12" />
+    <script defer src="./app.js?v=6"></script>
+    <script defer src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script defer src="./site-config.js"></script>
+    <script type="module" src="./checkout.js?v=2"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="topbar" data-header>
+        <a class="brand" href="./index.html" aria-label="Cove Mail home">
+          <img src="./assets/cove-mail-mark.svg" alt="" />
+          <span>Cove Mail</span>
+        </a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+          <a href="./index.html#connect">Bring Your Own AI</a>
+          <a href="./index.html#compass">Compass</a>
+          <a href="./index.html#compatibility">Compatibility</a>
+          <a class="nav-utility" href="./pricing.html" aria-current="page">Pricing</a>
+          <a class="nav-download" data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download</a>
+        </nav>
+      </header>
+
+      <main id="main" class="utility-main">
+        <header class="utility-hero reveal">
+          <p class="eyebrow">Pricing</p>
+          <h1>Try Cove Mail for 14 days.</h1>
+          <p>Your trial begins after your first successful mailbox sync. It does not require payment information and does not turn into a paid subscription.</p>
+        </header>
+
+        <section class="pricing story utility-section" aria-labelledby="plans-heading">
+          <div class="story-heading centered reveal">
+            <p class="eyebrow">Choose a plan after the trial</p>
+            <h2 id="plans-heading">Monthly or annual access.</h2>
+            <p>Both plans include the complete Cove Mail app and its optional connection for a compatible AI assistant or local model.</p>
+          </div>
+          <div class="pricing-scene reveal" data-motion-scene>
+            <div class="floating-chip trial-chip" aria-hidden="true"><i>14</i><span><strong>14-day trial</strong><small>Begins after first sync</small></span></div>
+            <div class="pricing-grid" role="group" aria-label="Cove Mail purchase plans">
+              <article class="price-card">
+                <p class="plan-label">Monthly</p>
+                <p class="plan-price"><strong data-price="month">Loading…</strong><span>per month</span></p>
+                <p>Billed monthly until you cancel renewal through Paddle.</p>
+                <button class="button primary purchase-button" type="button" data-plan="month" disabled>
+                  Choose monthly <span aria-hidden="true">↗</span>
+                </button>
+              </article>
+              <article class="price-card featured">
+                <p class="plan-label">Annual</p>
+                <p class="plan-price"><strong data-price="year">Loading…</strong><span>per year</span></p>
+                <p>Billed annually with the same features as the monthly subscription.</p>
+                <button class="button primary purchase-button" type="button" data-plan="year" disabled>
+                  Choose annual <span aria-hidden="true">↗</span>
+                </button>
+              </article>
+            </div>
+          </div>
+          <p class="checkout-status" data-checkout-status role="status" aria-live="polite">Loading prices…</p>
+          <p class="purchase-boundary">Paddle processes the purchase. Cove Mail emails an activation link after the payment is confirmed.</p>
+          <p class="purchase-terms">Subscriptions renew automatically until you cancel renewal. By purchasing, you agree to the <a href="./terms-of-service.html">Terms of Service</a> and <a href="./refund-policy.html">Refund Policy</a>.</p>
+          <p class="utility-help">Already have Cove Mail? <a href="./subscription.html">Manage your subscription or request another activation email.</a></p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <a class="footer-brand" href="./index.html"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>A Mac email app that connects to your choice of compatible AI.</small></span></a>
+        <p>Questions about Cove Mail or your license? <a href="mailto:covemailapp@gmail.com">Contact support</a>.</p>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-group"><strong>Product</strong><a href="./index.html#connect">Bring Your Own AI</a><a href="./index.html#compass">Compass</a><a href="./index.html#compatibility">Compatibility</a></div>
+          <div class="footer-group"><strong>Get Cove Mail</strong><a data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download</a><a href="./pricing.html" aria-current="page">Pricing</a></div>
+          <div class="footer-group"><strong>Support</strong><a href="./subscription.html">Manage your subscription</a><a href="./privacy-policy.html">Privacy Policy</a><a href="./terms-of-service.html">Terms of Service</a><a href="./refund-policy.html">Refund Policy</a></div>
+        </nav>
+        <small>© <span data-current-year></span> Cove Mail</small>
+      </footer>
+    </div>
+  </body>
+</html>

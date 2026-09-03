@@ -17,9 +17,11 @@ for (const file of [
   "checkout.js",
   "index.html",
   "license.js",
+  "pricing.html",
   "privacy-policy.html",
   "refund-policy.html",
   "styles.css",
+  "subscription.html",
   "terms-of-service.html",
 ]) {
   await cp(resolve(root, file), resolve(client, file));
@@ -33,6 +35,8 @@ const requiredFiles = [
   "dist/client/index.html",
   "dist/client/checkout.js",
   "dist/client/license.js",
+  "dist/client/pricing.html",
+  "dist/client/subscription.html",
   "dist/.openai/hosting.json",
 ];
 for (const path of requiredFiles) {

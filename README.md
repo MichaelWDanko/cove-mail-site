@@ -1,7 +1,7 @@
 # Cove Mail Site
 
-Landing page, Privacy Policy, Terms of Service, Refund Policy, Paddle overlay
-checkout, and license self-service for Cove Mail.
+Bring Your Own AI landing page, pricing, subscription self-service, Privacy
+Policy, Terms of Service, and Refund Policy for Cove Mail.
 
 The site is intended to be hosted with GitHub Pages at:
 
@@ -18,10 +18,10 @@ Paddle overlay checkout with one matching price.
 Browser events never grant a license. Paid access starts only after the
 licensing backend verifies and processes a signed Paddle webhook.
 
-## License self-service boundary
+## Subscription self-service boundary
 
-The Manage license section sends customers to the environment-matched Paddle
-customer portal. Paddle authenticates customers by email and provides billing,
+The subscription page sends customers to the environment-matched Paddle customer
+portal. Paddle authenticates customers by email and provides billing,
 payment-method, renewal, and cancellation controls.
 
 Activation email requests ask only for the licensing email. The browser posts

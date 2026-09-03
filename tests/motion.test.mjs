@@ -4,14 +4,15 @@ import test from "node:test";
 import { runInNewContext } from "node:vm";
 
 const root = new URL("../", import.meta.url);
-const [app, html, styles] = await Promise.all([
+const [app, html, pricingHtml, styles] = await Promise.all([
   readFile(new URL("app.js", root), "utf8"),
   readFile(new URL("index.html", root), "utf8"),
+  readFile(new URL("pricing.html", root), "utf8"),
   readFile(new URL("styles.css", root), "utf8"),
 ]);
 
 test("ambient motion runs only in visible motion scenes", () => {
-  assert.equal(html.match(/data-motion-scene/g)?.length, 5);
+  assert.equal(html.match(/data-motion-scene/g)?.length, 4);
   assert.match(app, /querySelectorAll\("\[data-motion-scene\]"\)/);
   assert.match(app, /classList\.toggle\("is-motion-active"/);
   assert.match(app, /!document\.hidden && !motionPreference\.matches/);
@@ -49,8 +50,8 @@ test("scroll progress caches its range and clamps elastic overscroll", () => {
 });
 
 test("first-party motion setup does not wait for Paddle", () => {
-  const appScript = html.search(/<script defer src="\.\/app\.js\?v=\d+"><\/script>/);
-  const paddleScript = html.indexOf("cdn.paddle.com");
+  const appScript = pricingHtml.search(/<script defer src="\.\/app\.js\?v=\d+"><\/script>/);
+  const paddleScript = pricingHtml.indexOf("cdn.paddle.com");
   assert.ok(appScript >= 0);
   assert.ok(paddleScript >= 0);
   assert.ok(appScript < paddleScript);

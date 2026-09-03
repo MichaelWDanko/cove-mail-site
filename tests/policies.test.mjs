@@ -12,20 +12,28 @@ const effectiveDates = Object.freeze({
   "terms-of-service.html": "September 3, 2026",
   "refund-policy.html": "September 2, 2026",
 });
-const allPages = Object.freeze(["index.html", ...policyPages]);
+const allPages = Object.freeze([
+  "index.html",
+  "pricing.html",
+  "subscription.html",
+  ...policyPages,
+]);
 
 const headerLinks = Object.freeze([
-  ["Home", "./index.html"],
-  ["Product", "./index.html#native"],
-  ["Accounts", "./index.html#accounts"],
-  ["Pricing", "./index.html#pricing"],
-  ["Manage your subscription", "./index.html#manage-license"],
-  ["AI connection", "./index.html#connect"],
+  ["Bring Your Own AI", "./index.html#connect"],
+  ["Compass", "./index.html#compass"],
+  ["Compatibility", "./index.html#compatibility"],
+  ["Pricing", "./pricing.html"],
+  ["Download", "https://github.com/MichaelWDanko/cove-mail-releases/releases/latest"],
 ]);
 
 const footerLinks = Object.freeze([
+  ["Bring Your Own AI", "./index.html#connect"],
+  ["Compass", "./index.html#compass"],
+  ["Compatibility", "./index.html#compatibility"],
   ["Download", "https://github.com/MichaelWDanko/cove-mail-releases/releases/latest"],
-  ...headerLinks,
+  ["Pricing", "./pricing.html"],
+  ["Manage your subscription", "./subscription.html"],
   ["Privacy Policy", "./privacy-policy.html"],
   ["Terms of Service", "./terms-of-service.html"],
   ["Refund Policy", "./refund-policy.html"],
@@ -62,14 +70,17 @@ test("links every policy from the public home page", async () => {
   for (const path of policyPages) assert.match(html, new RegExp(path.replace(".", "\\.")));
 });
 
-test("uses one primary navigation on every page without policy links", async () => {
+test("uses one focused primary navigation on every page without policy or subscription links", async () => {
   const expected = headerLinks.map(([label, href]) => ({ label, href }));
 
   for (const path of allPages) {
     const html = await readPage(path);
     const links = linksIn(html, /<nav id="site-nav"[^>]*>([\s\S]*?)<\/nav>/);
     assert.deepEqual(links, expected, `${path} primary navigation`);
-    assert.doesNotMatch(links.map(({ href }) => href).join(" "), /(?:privacy|terms-of-service|refund-policy)\.html/);
+    assert.doesNotMatch(
+      links.map(({ href }) => href).join(" "),
+      /(?:privacy|terms-of-service|refund-policy|subscription)\.html/,
+    );
   }
 });
 
@@ -88,7 +99,7 @@ test("uses one footer link set with full policy names on every page", async () =
 
   for (const path of allPages) {
     const html = await readPage(path);
-    const links = linksIn(html, /<nav aria-label="Footer navigation">([\s\S]*?)<\/nav>/);
+    const links = linksIn(html, /<nav[^>]*aria-label="Footer navigation"[^>]*>([\s\S]*?)<\/nav>/);
     assert.deepEqual(links, expected, `${path} footer navigation`);
   }
 });
@@ -104,18 +115,31 @@ test("marks the current policy only in the footer", async () => {
 
 test("offers the latest production release from the hero and footer", async () => {
   const html = await readPage("index.html");
-  assert.equal(html.match(/data-download-link/g)?.length, 2);
+  assert.equal(html.match(/data-download-link/g)?.length, 4);
   assert.equal(
     html.match(/https:\/\/github\.com\/MichaelWDanko\/cove-mail-releases\/releases\/latest/g)?.length,
-    2,
+    4,
   );
 });
 
 test("states the subscription renewal terms before checkout", async () => {
-  const html = await readPage("index.html");
+  const html = await readPage("pricing.html");
   assert.match(html, /Subscriptions renew automatically until you cancel renewal\./);
   assert.match(html, />Terms of Service<\/a>/);
   assert.match(html, />Refund Policy<\/a>/);
+});
+
+test("leads with Bring Your Own AI before Compass and inbox compatibility", async () => {
+  const html = await readPage("index.html");
+  const connection = html.indexOf('id="connect"');
+  const compass = html.indexOf('id="compass"');
+  const compatibility = html.indexOf('id="compatibility"');
+
+  assert.match(html, /<p class="eyebrow">Bring Your Own AI<\/p>/);
+  assert.ok(connection > 0 && connection < compass && compass < compatibility);
+  assert.doesNotMatch(html, /id="(?:pricing|manage-license)"/);
+  assert.match(html, /href="\.\/pricing\.html"/);
+  assert.match(html, /href="\.\/subscription\.html"/);
 });
 
 test("states the agreed 14-day refund process and later exception route", async () => {

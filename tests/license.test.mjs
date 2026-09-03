@@ -9,7 +9,8 @@ import {
   validateLicenseConfig,
 } from "../license.js";
 
-const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const homeHtml = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const html = await readFile(new URL("../subscription.html", import.meta.url), "utf8");
 const licenseScript = await readFile(new URL("../license.js", import.meta.url), "utf8");
 
 test("uses only the environment-matched Paddle customer portal", () => {
@@ -66,13 +67,10 @@ test("activation result uses the required non-enumerating message", () => {
 });
 
 test("subscription management is discoverable and activation asks for only an email", () => {
-  assert.equal(
-    html.match(/<a href="\.\/index\.html#manage-license">Manage your subscription<\/a>/g)?.length,
-    2,
-  );
+  assert.match(homeHtml, /<a href="\.\/subscription\.html">Manage your subscription<\/a>/);
   const section = html.slice(
-    html.indexOf('<section class="license-management story"'),
-    html.indexOf('<section class="story connection-story"'),
+    html.indexOf('<section class="license-management'),
+    html.indexOf("</main>"),
   );
   assert.match(section, /data-customer-portal/);
   assert.match(section, /target="_blank"/);
