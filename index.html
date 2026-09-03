@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Cove Mail is a native macOS email client for iCloud, Gmail, and IMAP—with an optional connection for your choice of AI." />
-    <title>Cove Mail | A native Mac email client for every inbox</title>
+    <meta name="description" content="Cove Mail is a Mac email app for iCloud, Gmail, and standard IMAP accounts. You can optionally connect a compatible AI assistant." />
+    <title>Cove Mail | Email for Mac</title>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://covemail.ai/" />
-    <meta property="og:title" content="Cove Mail | A native Mac email client for every inbox" />
-    <meta property="og:description" content="All of your email in one native Mac app. Bring your own AI when you want it." />
+    <meta property="og:title" content="Cove Mail | Email for Mac" />
+    <meta property="og:description" content="A Mac email app for iCloud, Gmail, and standard IMAP accounts, with an optional AI assistant connection." />
     <meta property="og:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <meta property="og:image:width" content="1729" />
     <meta property="og:image:height" content="910" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cove Mail | A native Mac email client for every inbox" />
-    <meta name="twitter:description" content="All of your email in one native Mac app. Bring your own AI when you want it." />
+    <meta name="twitter:title" content="Cove Mail | Email for Mac" />
+    <meta name="twitter:description" content="A Mac email app for iCloud, Gmail, and standard IMAP accounts, with an optional AI assistant connection." />
     <meta name="twitter:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=8" />
+    <link rel="stylesheet" href="./styles.css?v=9" />
     <script defer src="./app.js?v=6"></script>
     <script defer src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
     <script defer src="./site-config.js"></script>
@@ -34,13 +34,12 @@
       </a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
       <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
-        <a href="#native">Native Mac app</a>
-        <a href="#accounts">Accounts</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#manage-license">Manage your subscription</a>
-        <a href="#connect">Bring your AI</a>
-        <a href="./privacy-policy.html">Privacy</a>
-        <a href="./terms-of-service.html">Terms</a>
+        <a href="./index.html" aria-current="page">Home</a>
+        <a href="./index.html#native">Product</a>
+        <a href="./index.html#accounts">Accounts</a>
+        <a href="./index.html#pricing">Pricing</a>
+        <a href="./index.html#manage-license">Manage your subscription</a>
+        <a href="./index.html#connect">AI connection</a>
       </nav>
     </header>
 
@@ -48,14 +47,14 @@
       <section class="hero" id="home">
         <div class="hero-glow" aria-hidden="true"></div>
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Native email for macOS</p>
-          <h1>All of your email.<br /><em>AI on your terms.</em></h1>
-          <p class="hero-lede">Cove Mail brings iCloud, Gmail, and standard IMAP accounts into a focused Mac app—with an optional way to bring your own AI to email. Read, search, write, and organize mail without giving up the way your Mac should feel.</p>
+          <p class="eyebrow"><span></span> Mac email app</p>
+          <h1>Email for iCloud,<br /><em>Gmail, and IMAP.</em></h1>
+          <p class="hero-lede">Cove Mail brings your email accounts into one Mac app. Read, search, write, and organize mail in one place. You can also connect a compatible AI assistant, but you do not need one to use Cove Mail.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#native">See the native experience <span aria-hidden="true">↓</span></a>
-            <a class="button quiet" href="#connect">Bring your own AI <span aria-hidden="true">↗</span></a>
+            <a class="button primary" data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download Cove Mail <span aria-hidden="true">↗</span></a>
+            <a class="button quiet" href="#native">See how Cove Mail works <span aria-hidden="true">↓</span></a>
           </div>
-          <p class="hero-note">The AI connection is optional. Cove Mail is a complete email client without it.</p>
+          <p class="hero-note">Cove Mail does not include an AI model. The AI connection is optional.</p>
         </div>
 
         <div class="hero-stage reveal" data-motion-scene role="img" aria-label="Cove Mail showing a unified inbox with two synced email accounts">
@@ -95,31 +94,31 @@
               </article>
             </div>
           </div>
-          <div class="stage-chip chip-left"><i></i><span><strong>Mail is current</strong><small>Two accounts synced</small></span></div>
-          <div class="stage-chip chip-right"><kbd>⌘ K</kbd><span><strong>Open Compass</strong><small>Search or go anywhere</small></span></div>
+          <div class="stage-chip chip-left"><i></i><span><strong>Up to date</strong><small>Two accounts synced</small></span></div>
+          <div class="stage-chip chip-right"><kbd>⌘ K</kbd><span><strong>Search mail</strong><small>Open a mailbox or setting</small></span></div>
         </div>
 
       </section>
 
       <section class="story native-story" id="native">
         <div class="story-heading reveal">
-          <p class="eyebrow light"><span></span> Native Mac app</p>
-          <h2>A modern way to access email. A familiar way to use it.</h2>
-          <p>Cove Mail puts everyday email at the center: a readable inbox, fast local search, proper compose and drafts, and clear account status. It works as a complete client on its own, with an assistant only when you choose.</p>
+          <p class="eyebrow light"><span></span> Mac app</p>
+          <h2>A Mac app for everyday email.</h2>
+          <p>Cove Mail includes a readable inbox, local search, compose and drafts, and clear account status. It works as a complete email app without an AI assistant.</p>
         </div>
         <div class="native-demo reveal" data-motion-scene>
-          <div class="demo-caption"><span>Compass</span><strong>From thought to action in one shortcut.</strong><p>Press Command-K to compose, search mail, open a mailbox, or jump into Settings.</p></div>
+          <div class="demo-caption"><span>Compass</span><strong>One shortcut for mail and settings.</strong><p>Press Command-K to compose, search mail, open a mailbox, or open Settings.</p></div>
           <div class="compass-scene">
             <div class="compass-window" role="img" aria-label="Compass finding a command or message from one keyboard shortcut">
-              <div class="compass-input"><span>⌕</span><strong>Search mail or go anywhere</strong><kbd>⌘ K</kbd></div>
+              <div class="compass-input"><span>⌕</span><strong>Search mail or open a mailbox</strong><kbd>⌘ K</kbd></div>
               <p>Quick actions</p>
               <div class="compass-result active"><span>✎</span><strong>Compose new message</strong><kbd>↵</kbd></div>
               <div class="compass-result"><span>⌕</span><strong>Search by sender or subject</strong><small>Mail search</small></div>
               <div class="compass-result"><span>▣</span><strong>Go to Inbox</strong><small>Work Gmail</small></div>
-              <div class="compass-result"><span>⚙</span><strong>Open MCP Settings</strong><small>Settings</small></div>
+              <div class="compass-result"><span>⚙</span><strong>Open AI connection settings</strong><small>Settings</small></div>
             </div>
-            <div class="floating-chip compass-shortcut-chip" aria-hidden="true"><kbd>⌘ K</kbd><span><strong>One shortcut</strong><small>Compose, search, or go</small></span></div>
-            <div class="floating-chip compass-search-chip" aria-hidden="true"><i>⌕</i><span><strong>Local search</strong><small>Across every inbox</small></span></div>
+            <div class="floating-chip compass-shortcut-chip" aria-hidden="true"><kbd>⌘ K</kbd><span><strong>Keyboard shortcut</strong><small>Compose, search, or navigate</small></span></div>
+            <div class="floating-chip compass-search-chip" aria-hidden="true"><i>⌕</i><span><strong>Local search</strong><small>Across connected accounts</small></span></div>
           </div>
         </div>
       </section>
@@ -127,38 +126,38 @@
       <section class="story account-story" id="accounts">
         <div class="account-visual reveal" data-motion-scene role="img" aria-label="Gmail, iCloud, and IMAP accounts together in Cove Mail">
           <div class="account-rings" aria-hidden="true"></div>
-          <div class="account-card front"><img src="./assets/cove-mail-mark.svg" alt="" /><span><small>Cove Mail · 3 accounts</small><strong>Multiple inboxes, one app</strong></span><em>✓</em></div>
+          <div class="account-card front"><img src="./assets/cove-mail-mark.svg" alt="" /><span><small>Cove Mail · 3 accounts</small><strong>Email accounts in one app</strong></span><em>✓</em></div>
           <div class="account-card back back-one"><i class="provider gmail">G</i><span><small>Gmail</small><strong>Work</strong></span><em>7</em></div>
           <div class="account-card back back-two"><i class="provider icloud">●</i><span><small>iCloud</small><strong>Personal</strong></span><em>5</em></div>
           <div class="account-card back back-three"><i class="provider imap">@</i><span><small>IMAP</small><strong>Studio</strong></span><em>0</em></div>
-          <div class="floating-chip account-sync-chip" aria-hidden="true"><i class="status-dot"></i><span><strong>All current</strong><small>Three accounts synced</small></span></div>
-          <div class="floating-chip account-search-chip" aria-hidden="true"><i>⌕</i><span><strong>One search</strong><small>Every connected inbox</small></span></div>
+          <div class="floating-chip account-sync-chip" aria-hidden="true"><i class="status-dot"></i><span><strong>Up to date</strong><small>Three accounts synced</small></span></div>
+          <div class="floating-chip account-search-chip" aria-hidden="true"><i>⌕</i><span><strong>Search all accounts</strong><small>One search field</small></span></div>
         </div>
         <div class="story-heading reveal">
-          <p class="eyebrow"><span></span> Provider independent</p>
-          <h2>Multiple inboxes.<br />One native app.</h2>
-          <p>Bring iCloud Mail, Gmail, and manually configured IMAP/SMTP accounts into Cove Mail without losing their separate identities. Move between accounts and mailboxes in one consistent Mac experience while provider differences stay behind the scenes.</p>
+          <p class="eyebrow"><span></span> Email accounts</p>
+          <h2>Use multiple email accounts in one app.</h2>
+          <p>Connect iCloud Mail, Gmail, and manually configured IMAP and SMTP accounts. Switch between accounts and mailboxes in one interface.</p>
           <ul class="check-list">
-            <li><span>✓</span> Distinct inboxes for every account</li>
-            <li><span>✓</span> Search across one or every account</li>
-            <li><span>✓</span> Sync and health for each account</li>
+            <li><span>✓</span> Keep each email account separate</li>
+            <li><span>✓</span> Search one account or all accounts</li>
+            <li><span>✓</span> See sync status for each account</li>
           </ul>
         </div>
       </section>
 
       <section class="pricing story" id="pricing">
         <div class="story-heading centered reveal">
-          <p class="eyebrow"><span></span> Simple licensing</p>
-          <h2>Try every licensed feature for 14 days.</h2>
-          <p>Your trial starts after your first successful mailbox sync. No email, account, payment method, or verification code is required. Purchase only when Cove Mail has earned a place on your Mac.</p>
+          <p class="eyebrow"><span></span> Pricing</p>
+          <h2>Try Cove Mail for 14 days.</h2>
+          <p>Your trial begins after your first successful mailbox sync. It does not require payment information and does not turn into a paid subscription.</p>
         </div>
         <div class="pricing-scene reveal" data-motion-scene>
-          <div class="floating-chip trial-chip" aria-hidden="true"><i>14</i><span><strong>Full-featured days</strong><small>Starts after first sync</small></span></div>
+          <div class="floating-chip trial-chip" aria-hidden="true"><i>14</i><span><strong>14-day trial</strong><small>Begins after first sync</small></span></div>
           <div class="pricing-grid" role="group" aria-label="Cove Mail purchase plans">
             <article class="price-card">
               <p class="plan-label">Monthly</p>
               <p class="plan-price"><strong data-price="month">Loading…</strong><span>per month</span></p>
-              <p>Pay month to month. Cancel future renewal through Paddle.</p>
+              <p>Billed monthly until you cancel renewal through Paddle.</p>
               <button class="button primary purchase-button" type="button" data-plan="month" disabled>
                 Choose monthly <span aria-hidden="true">↗</span>
               </button>
@@ -166,28 +165,29 @@
             <article class="price-card featured">
               <p class="plan-label">Annual</p>
               <p class="plan-price"><strong data-price="year">Loading…</strong><span>per year</span></p>
-              <p>One annual payment with the same licensed features.</p>
+              <p>Billed annually with the same features as the monthly subscription.</p>
               <button class="button primary purchase-button" type="button" data-plan="year" disabled>
                 Choose annual <span aria-hidden="true">↗</span>
               </button>
             </article>
           </div>
         </div>
-        <p class="checkout-status" data-checkout-status role="status" aria-live="polite">Loading secure Paddle pricing…</p>
-        <p class="purchase-boundary">Browser checkout does not unlock Cove Mail. Paid access starts only after Cove Mail verifies Paddle’s signed event and sends your activation link.</p>
+        <p class="checkout-status" data-checkout-status role="status" aria-live="polite">Loading prices…</p>
+        <p class="purchase-boundary">Paddle processes the purchase. Cove Mail emails an activation link after the payment is confirmed.</p>
+        <p class="purchase-terms">Subscriptions renew automatically until you cancel renewal. By purchasing, you agree to the <a href="./terms-of-service.html">Terms of Service</a> and <a href="./refund-policy.html">Refund Policy</a>.</p>
       </section>
 
       <section class="license-management story" id="manage-license">
         <div class="story-heading centered reveal">
-          <p class="eyebrow"><span></span> License self-service</p>
+          <p class="eyebrow"><span></span> Subscription</p>
           <h2>Manage your subscription.</h2>
-          <p>Open Paddle to manage an existing subscription, or ask Cove Mail to send another activation email.</p>
+          <p>Manage an existing subscription through Paddle or request another activation email.</p>
         </div>
         <div class="license-management-grid reveal">
           <article class="license-management-card">
             <p class="plan-label">Subscription</p>
             <h3>Manage billing and renewal</h3>
-            <p>Sign in to Paddle with the email used at checkout to manage billing, update your payment method, or cancel renewal.</p>
+            <p>Sign in to Paddle with the email used at checkout. You can manage billing, update your payment method, or cancel renewal.</p>
             <a
               class="button primary license-management-button"
               data-customer-portal
@@ -202,14 +202,14 @@
           <article class="license-management-card">
             <p class="plan-label">Activation</p>
             <h3>Send an activation email</h3>
-            <p>Enter the email associated with your Cove Mail purchase or complimentary license.</p>
+            <p>Enter the email address associated with your subscription or complimentary access.</p>
             <form
               class="activation-form"
               data-activation-form
               method="post"
               action="/api/license-recovery"
             >
-              <label for="licensing-email">Licensing email</label>
+              <label for="licensing-email">Email address for your Cove Mail license</label>
               <input
                 id="licensing-email"
                 name="licensingEmail"
@@ -231,60 +231,60 @@
 
       <section class="story connection-story" id="connect">
         <div class="story-heading reveal">
-          <p class="eyebrow coral"><span></span> Optional by design</p>
-          <h2>Bring your own AI.<br /><em>Keep your own boundaries.</em></h2>
-          <p>AI access to email is often treated as all or nothing. Cove Mail takes a more deliberate approach: connect a compatible cloud assistant or local model, then choose the accounts and capabilities it can use.</p>
+          <p class="eyebrow coral"><span></span> Optional AI assistant</p>
+          <h2>Connect an AI assistant if you want to use one.</h2>
+          <p>Cove Mail does not include an AI model. You can connect a compatible cloud assistant or local model, then choose which email accounts and actions it can use.</p>
         </div>
 
         <div class="connection-demo reveal" data-motion-scene role="group" aria-label="Example of a permitted AI request through Cove Mail">
           <div class="connection-node assistant-node">
-            <span class="node-label">Separate application</span>
-            <div class="node-title"><i>AI</i><span><strong>Your assistant</strong><small>Compatible cloud or local model</small></span></div>
+            <span class="node-label">Your AI assistant</span>
+            <div class="node-title"><i>AI</i><span><strong>Connected assistant</strong><small>Compatible cloud assistant or local model</small></span></div>
             <div class="request-bubble">Find mail from Maya about the launch.</div>
           </div>
-          <div class="flow-lane" aria-hidden="true"><span class="flow-dot"></span><small>Permitted request</small></div>
+          <div class="flow-lane" aria-hidden="true"><span class="flow-dot"></span><small>Request</small></div>
           <div class="connection-node cove-node">
-            <span class="node-label">On this Mac</span>
-            <div class="node-title"><img src="./assets/cove-mail-mark-dark.svg" alt="" /><span><strong>Cove Mail</strong><small>Local MCP connection</small></span></div>
-            <div class="permission-list"><span><i>✓</i> Work Gmail</span><span><i>✓</i> Search metadata</span><span class="off"><i>×</i> Send or delete</span></div>
-            <div class="floating-chip permission-chip" aria-hidden="true"><i>✓</i><span><strong>Read only</strong><small>Selected scope</small></span></div>
+            <span class="node-label">Cove Mail on your Mac</span>
+            <div class="node-title"><img src="./assets/cove-mail-mark-dark.svg" alt="" /><span><strong>Cove Mail</strong><small>Local connection</small></span></div>
+            <div class="permission-list"><span><i>✓</i> Work Gmail</span><span><i>✓</i> Search mail</span><span class="off"><i>×</i> Send or delete: off</span></div>
+            <div class="floating-chip permission-chip" aria-hidden="true"><i>✓</i><span><strong>Search only</strong><small>Current setting</small></span></div>
           </div>
-          <div class="flow-lane return" aria-hidden="true"><span class="flow-dot"></span><small>Allowed mail data</small></div>
+          <div class="flow-lane return" aria-hidden="true"><span class="flow-dot"></span><small>Mail returned</small></div>
           <div class="connection-node mail-node">
-            <span class="node-label">Selected scope</span>
-            <div class="node-title"><i class="mail-symbol">✉</i><span><strong>Your accounts</strong><small>Only what you enable</small></span></div>
+            <span class="node-label">Selected accounts</span>
+            <div class="node-title"><i class="mail-symbol">✉</i><span><strong>Your accounts</strong><small>Only selected accounts</small></span></div>
             <div class="mail-result"><small>3 matches</small><strong>Maya Lin · Launch notes</strong><span>Subject, date, safe snippet</span></div>
           </div>
         </div>
 
         <div class="control-grid reveal">
-          <article><span>01</span><h3>Choose the assistant</h3><p>Use a compatible cloud assistant or local model rather than an AI provider chosen by Cove Mail.</p></article>
-          <article><span>02</span><h3>Choose the accounts</h3><p>Scope the connection to the email accounts you want. Adding an account does not have to broaden access.</p></article>
-          <article><span>03</span><h3>Choose the capabilities</h3><p>Metadata, message bodies, drafts, sending, and deletion are separately permissioned, with confirmation for sensitive actions.</p></article>
+          <article><span>01</span><h3>Choose the AI assistant</h3><p>Connect a compatible cloud assistant or local model. Cove Mail does not select or provide one.</p></article>
+          <article><span>02</span><h3>Choose the email accounts</h3><p>Select the accounts the assistant can use. Adding an account to Cove Mail does not give the assistant access.</p></article>
+          <article><span>03</span><h3>Choose the allowed actions</h3><p>Allow only the actions you need, such as search, read, draft, send, or delete. An enabled action can run without another Cove Mail approval.</p></article>
         </div>
       </section>
 
       <section class="privacy-band reveal">
-        <div><p class="eyebrow light"><span></span> Local by default</p><h2>Your mail stays close to home.</h2></div>
-        <p>Cove Mail keeps account configuration, cached mail, search, drafts, rules, and activity on your Mac. Credentials remain protected by macOS Keychain and are never returned through MCP.</p>
+        <div><p class="eyebrow light"><span></span> Stored on your Mac</p><h2>Cove Mail does not keep a hosted copy of your mailbox.</h2></div>
+        <p>Cove Mail stores account settings, cached email, search indexes, drafts, rules, and activity on your Mac. Passwords stay in macOS Keychain. A connected AI assistant receives only data allowed by the settings you choose.</p>
         <a href="./privacy-policy.html">Read the Privacy Policy <span aria-hidden="true">↗</span></a>
       </section>
 
       <section class="everyday story" id="everyday">
-        <div class="story-heading reveal"><p class="eyebrow"><span></span> The complete client</p><h2>Everything email needs.<br />Nothing it doesn’t.</h2></div>
+        <div class="story-heading reveal"><p class="eyebrow"><span></span> Email features</p><h2>Use Cove Mail for everyday email.</h2></div>
         <div class="feature-list reveal">
-          <article><span>01</span><h3>Search every inbox efficiently</h3><p>Find messages across connected accounts using sender, recipient, subject, date, flags, and attachment details—without guessing which inbox holds them.</p></article>
-          <article><span>02</span><h3>Read without friction</h3><p>Open full messages and review attachment details normally, with the information you need available directly in the app.</p></article>
-          <article><span>03</span><h3>Use familiar email workflows</h3><p>Compose, save drafts, reply, forward, organize mail, add attachments, and send from account-specific identities and signatures.</p></article>
-          <article><span>04</span><h3>Work offline and stay informed</h3><p>Keep selected mailboxes, messages, and attachments available offline while seeing sync, indexing, Outbox, and recovery status clearly.</p></article>
+          <article><span>01</span><h3>Search connected accounts</h3><p>Search one or more accounts by sender, recipient, subject, date, flags, or attachment details.</p></article>
+          <article><span>02</span><h3>Read messages and attachments</h3><p>Open messages and review attachment details in the app.</p></article>
+          <article><span>03</span><h3>Compose and organize mail</h3><p>Compose, save drafts, reply, forward, organize mail, add attachments, and send from the account and signature you choose.</p></article>
+          <article><span>04</span><h3>Use mail offline</h3><p>Keep selected mailboxes, messages, and attachments available offline. See sync, indexing, Outbox, and recovery status in the app.</p></article>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <a class="footer-brand" href="#home"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>A native, multi-provider Mac email client.</small></span></a>
+      <a class="footer-brand" href="./index.html"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>Email for Mac with support for iCloud, Gmail, and IMAP.</small></span></a>
       <p>Questions about Cove Mail or your license? <a href="mailto:covemailapp@gmail.com">Contact support</a>.</p>
-      <nav aria-label="Footer navigation"><a href="#native">Product</a><a href="#pricing">Pricing</a><a href="#manage-license">Manage your subscription</a><a href="./privacy-policy.html">Privacy</a><a href="./terms-of-service.html">Terms</a><a href="./refund-policy.html">Refunds</a></nav>
+      <nav aria-label="Footer navigation"><a data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download</a><a href="./index.html">Home</a><a href="./index.html#native">Product</a><a href="./index.html#accounts">Accounts</a><a href="./index.html#pricing">Pricing</a><a href="./index.html#manage-license">Manage your subscription</a><a href="./index.html#connect">AI connection</a><a href="./privacy-policy.html">Privacy Policy</a><a href="./terms-of-service.html">Terms of Service</a><a href="./refund-policy.html">Refund Policy</a></nav>
       <small>© <span data-current-year></span> Cove Mail</small>
     </footer>
   </body>
