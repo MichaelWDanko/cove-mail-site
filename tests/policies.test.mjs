@@ -142,6 +142,19 @@ test("leads with Bring Your Own AI before Compass and inbox compatibility", asyn
   assert.match(html, /href="\.\/subscription\.html"/);
 });
 
+test("names MCP as the local bridge and keeps Compass shortcut independent", async () => {
+  const html = await readPage("index.html");
+  const connection = html.slice(html.indexOf('id="connect"'), html.indexOf('id="compass"'));
+  const compass = html.slice(html.indexOf('id="compass"'), html.indexOf('id="compatibility"'));
+
+  assert.match(html, /Model Context Protocol \(MCP\) bridge/);
+  assert.match(connection, /local MCP server/);
+  assert.match(connection, /Any agent that can connect to a local MCP server/);
+  assert.match(compass, /<h2>Compass puts mail and settings in one place\.<\/h2>/);
+  assert.doesNotMatch(compass, /Command-K|⌘ K|keyboard shortcut|<kbd>/i);
+  assert.equal(compass.match(/class="compass-result/g)?.length, 4);
+});
+
 test("states the agreed 14-day refund process and later exception route", async () => {
   const html = await readPage("refund-policy.html");
   assert.match(html, /within 14 calendar days after an initial subscription charge\s+or a renewal charge/);

@@ -3,21 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Cove Mail bridges your email accounts to a compatible AI assistant or local model you choose, with access you control." />
+    <meta name="description" content="Cove Mail is a Mac email app with a local MCP connection for AI agents. Connect the agent you choose and control which email accounts and actions it can use." />
     <title>Cove Mail | Bring Your Own AI to Email</title>
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://covemail.ai/" />
     <meta property="og:title" content="Cove Mail | Bring Your Own AI to Email" />
-    <meta property="og:description" content="Bridge your email accounts to a compatible AI assistant or local model you choose, with access you control." />
+    <meta property="og:description" content="Connect an AI agent to your email through Cove Mail's local MCP server. Choose the accounts and actions it can use." />
     <meta property="og:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <meta property="og:image:width" content="1729" />
     <meta property="og:image:height" content="910" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Cove Mail | Bring Your Own AI to Email" />
-    <meta name="twitter:description" content="Bridge your email accounts to a compatible AI assistant or local model you choose, with access you control." />
+    <meta name="twitter:description" content="Connect an AI agent to your email through Cove Mail's local MCP server. Choose the accounts and actions it can use." />
     <meta name="twitter:image" content="https://covemail.ai/assets/cove-mail-social.png" />
     <link rel="icon" href="./assets/cove-mail-favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./styles.css?v=12" />
+    <link rel="stylesheet" href="./styles.css?v=13" />
     <script defer src="./app.js?v=6"></script>
   </head>
   <body>
@@ -44,15 +44,15 @@
         <div class="hero-copy reveal">
           <p class="eyebrow">Bring Your Own AI</p>
           <h1>Bring your own AI<br /><em>to your inbox.</em></h1>
-          <p class="hero-lede">Cove Mail is the bridge between your email accounts and a compatible AI assistant or local model you choose. Give it access to only the accounts and actions you want it to use.</p>
+          <p class="hero-lede">Cove Mail is the Model Context Protocol (MCP) bridge between your email accounts and an AI agent you choose. Any agent that can connect to a local MCP server can work with Cove Mail. You control which accounts and actions it can use.</p>
           <div class="hero-actions">
             <a class="button primary" data-download-link href="https://github.com/MichaelWDanko/cove-mail-releases/releases/latest">Download Cove Mail <span aria-hidden="true">↗</span></a>
             <a class="button quiet" href="#connect">See how the connection works <span aria-hidden="true">↓</span></a>
           </div>
-          <p class="hero-note">Cove Mail does not include an AI model. You choose and connect the assistant.</p>
+          <p class="hero-note">Cove Mail does not include or require a specific AI model. It connects your chosen agent to email through MCP.</p>
         </div>
 
-        <div class="hero-stage reveal" data-motion-scene role="img" aria-label="Cove Mail bridging a chosen AI assistant to selected email accounts">
+        <div class="hero-stage reveal" data-motion-scene role="img" aria-label="Cove Mail connecting a chosen MCP agent to selected email accounts">
           <div class="orbit orbit-one" aria-hidden="true"></div>
           <div class="orbit orbit-two" aria-hidden="true"></div>
           <div class="mac-window hero-window">
@@ -89,7 +89,7 @@
               </article>
             </div>
           </div>
-          <div class="stage-chip chip-left"><kbd>AI</kbd><span><strong>Your assistant</strong><small>Connected by you</small></span></div>
+          <div class="stage-chip chip-left"><kbd>AI</kbd><span><strong>Your MCP agent</strong><small>Connected by you</small></span></div>
           <div class="stage-chip chip-right"><i></i><span><strong>Search allowed</strong><small>Send and delete off</small></span></div>
         </div>
 
@@ -98,24 +98,24 @@
       <section class="story connection-story" id="connect">
         <div class="story-heading reveal">
           <p class="eyebrow coral">How it works</p>
-          <h2>Your assistant meets your inbox <em>through Cove Mail.</em></h2>
-          <p>Connect a compatible cloud assistant or local model to Cove Mail on your Mac. Cove Mail gives it access to only the email accounts and actions you enable.</p>
+          <h2>Your agent meets your inbox <em>through MCP.</em></h2>
+          <p>Cove Mail runs a local MCP server on your Mac. Any agent that can connect to a local MCP server can work with Cove Mail, using only the email accounts and actions you enable.</p>
         </div>
 
-        <div class="connection-demo reveal" data-motion-scene role="group" aria-label="A chosen AI assistant requesting permitted email data through Cove Mail">
+        <div class="connection-demo reveal" data-motion-scene role="group" aria-label="A chosen MCP agent requesting permitted email data through Cove Mail">
           <div class="connection-node assistant-node">
-            <span class="node-label">Your AI assistant</span>
-            <div class="node-title"><i>AI</i><span><strong>Connected assistant</strong><small>Compatible cloud assistant or local model</small></span></div>
+            <span class="node-label">Your MCP agent</span>
+            <div class="node-title"><i>AI</i><span><strong>Connected agent</strong><small>Cloud assistant or local model</small></span></div>
             <div class="request-bubble">Find mail from Maya about the launch.</div>
           </div>
-          <div class="flow-lane" aria-hidden="true"><span class="flow-dot"></span><small>Request</small></div>
+          <div class="flow-lane" aria-hidden="true"><span class="flow-dot"></span><small>MCP request</small></div>
           <div class="connection-node cove-node">
             <span class="node-label">Cove Mail on your Mac</span>
-            <div class="node-title"><img src="./assets/cove-mail-mark-dark.svg" alt="" /><span><strong>Cove Mail</strong><small>Local bridge</small></span></div>
+            <div class="node-title"><img src="./assets/cove-mail-mark-dark.svg" alt="" /><span><strong>Cove Mail</strong><small>Local MCP server</small></span></div>
             <div class="permission-list"><span><i>✓</i> Work Gmail</span><span><i>✓</i> Search mail</span><span class="off"><i>×</i> Send or delete: off</span></div>
             <div class="floating-chip permission-chip" aria-hidden="true"><i>✓</i><span><strong>Search only</strong><small>Current setting</small></span></div>
           </div>
-          <div class="flow-lane return" aria-hidden="true"><span class="flow-dot"></span><small>Mail returned</small></div>
+          <div class="flow-lane return" aria-hidden="true"><span class="flow-dot"></span><small>MCP response</small></div>
           <div class="connection-node mail-node">
             <span class="node-label">Selected accounts</span>
             <div class="node-title"><i class="mail-symbol">✉</i><span><strong>Your accounts</strong><small>Only selected accounts</small></span></div>
@@ -124,30 +124,30 @@
         </div>
 
         <div class="control-grid reveal">
-          <article><span>01</span><h3>Choose the AI assistant</h3><p>Connect a compatible cloud assistant or local model. Cove Mail does not select or provide one.</p></article>
-          <article><span>02</span><h3>Choose the email accounts</h3><p>Select the accounts the assistant can use. Adding an account to Cove Mail does not give the assistant access.</p></article>
+          <article><span>01</span><h3>Connect your AI agent</h3><p>Cove Mail does not require a specific model. Use any agent that can connect to its local MCP server, whether it uses a cloud or local model.</p></article>
+          <article><span>02</span><h3>Choose the email accounts</h3><p>Select the accounts the agent can use. Adding an account to Cove Mail does not grant the agent MCP access.</p></article>
           <article><span>03</span><h3>Choose the allowed actions</h3><p>Allow only the actions you need, such as search, read, draft, send, or delete. An enabled action can run without another Cove Mail approval.</p></article>
         </div>
       </section>
 
       <section class="story native-story" id="compass">
         <div class="story-heading reveal">
-          <p class="eyebrow light">Compass</p>
-          <h2>One shortcut for mail and settings.</h2>
-          <p>Press Command-K to compose, search mail, open a mailbox, or open Settings. Compass keeps the commands you use in one place.</p>
+          <p class="eyebrow light">Native Mac feature</p>
+          <h2>Compass puts mail and settings in one place.</h2>
+          <p>Find messages, compose mail, open a mailbox, or open Settings with Compass.</p>
         </div>
         <div class="native-demo reveal" data-motion-scene>
-          <div class="demo-caption"><span>Compass</span><strong>One shortcut for mail and settings.</strong><p>Press Command-K to compose, search mail, open a mailbox, or open Settings.</p></div>
+          <div class="demo-caption"><span>Compass</span><strong>Find mail or choose a command.</strong><p>Messages, mailboxes, compose, and Settings appear in one focused view.</p></div>
           <div class="compass-scene">
-            <div class="compass-window" role="img" aria-label="Compass finding a command or message from one keyboard shortcut">
-              <div class="compass-input"><span>⌕</span><strong>Search mail or open a mailbox</strong><kbd>⌘ K</kbd></div>
+            <div class="compass-window" role="img" aria-label="Compass finding a command or message">
+              <div class="compass-input"><span>⌕</span><strong>Search mail or choose a command</strong></div>
               <p>Quick actions</p>
-              <div class="compass-result active"><span>✎</span><strong>Compose new message</strong><kbd>↵</kbd></div>
+              <div class="compass-result active"><span>✎</span><strong>Compose new message</strong></div>
               <div class="compass-result"><span>⌕</span><strong>Search by sender or subject</strong><small>Mail search</small></div>
               <div class="compass-result"><span>▣</span><strong>Go to Inbox</strong><small>Work Gmail</small></div>
               <div class="compass-result"><span>⚙</span><strong>Open AI connection settings</strong><small>Settings</small></div>
             </div>
-            <div class="floating-chip compass-shortcut-chip" aria-hidden="true"><kbd>⌘ K</kbd><span><strong>Keyboard shortcut</strong><small>Compose, search, or navigate</small></span></div>
+            <div class="floating-chip compass-feature-chip" aria-hidden="true"><i>C</i><span><strong>Compass</strong><small>Mail and settings</small></span></div>
             <div class="floating-chip compass-search-chip" aria-hidden="true"><i>⌕</i><span><strong>Local search</strong><small>Across connected accounts</small></span></div>
           </div>
         </div>
@@ -177,12 +177,12 @@
 
       <section class="privacy-band reveal">
         <div><p class="eyebrow light">Stored on your Mac</p><h2>Cove Mail does not keep a hosted copy of your mailbox.</h2></div>
-        <p>Cove Mail keeps your email data, account information, and preferences on your Mac. Sign-in credentials are protected using macOS Keychain. A connected AI assistant receives only data allowed by the settings you choose.</p>
+        <p>Cove Mail keeps your email data, account information, and preferences on your Mac. Sign-in credentials are protected using macOS Keychain. A connected MCP agent receives only data allowed by the settings you choose.</p>
         <a href="./privacy-policy.html">Read the Privacy Policy <span aria-hidden="true">↗</span></a>
       </section>
 
       <section class="everyday story" id="everyday">
-        <div class="story-heading reveal"><p class="eyebrow">The email app underneath</p><h2>Use Cove Mail for everyday email.</h2><p>Cove Mail remains a complete Mac email app when no AI assistant is connected.</p></div>
+        <div class="story-heading reveal"><p class="eyebrow">The email app underneath</p><h2>Use Cove Mail for everyday email.</h2><p>Cove Mail remains a complete Mac email app when no AI agent is connected.</p></div>
         <div class="feature-list reveal">
           <article><span>01</span><h3>Search connected accounts</h3><p>Search one or more accounts by sender, recipient, subject, date, flags, or attachment details.</p></article>
           <article><span>02</span><h3>Read messages and attachments</h3><p>Open messages and review attachment details in the app.</p></article>
@@ -205,7 +205,7 @@
     </main>
 
     <footer class="footer">
-      <a class="footer-brand" href="./index.html"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>A Mac email app that connects to your choice of compatible AI.</small></span></a>
+      <a class="footer-brand" href="./index.html"><img src="./assets/cove-mail-mark.svg" alt="" /><span><strong>Cove Mail</strong><small>A Mac email app with a local MCP connection for the AI agent you choose.</small></span></a>
       <p>Questions about Cove Mail or your license? <a href="mailto:covemailapp@gmail.com">Contact support</a>.</p>
       <nav class="footer-nav" aria-label="Footer navigation">
         <div class="footer-group"><strong>Product</strong><a href="./index.html#connect">Bring Your Own AI</a><a href="./index.html#compass">Compass</a><a href="./index.html#compatibility">Compatibility</a></div>
