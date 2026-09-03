@@ -37,8 +37,7 @@ a { color: inherit; }
 .hero::before { position: absolute; inset: 0; z-index: -2; content: ""; background-image: linear-gradient(rgba(8, 127, 134, 0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(8, 127, 134, 0.045) 1px, transparent 1px); background-size: 58px 58px; -webkit-mask-image: linear-gradient(180deg, black 0, transparent 84%); mask-image: linear-gradient(180deg, black 0, transparent 84%); }
 .hero-glow { position: absolute; top: -140px; right: -140px; z-index: -1; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(42, 176, 177, .2), rgba(221, 239, 233, .08) 42%, transparent 70%); }
 .hero-copy { position: relative; z-index: 2; width: min(620px, 50%); padding-top: 38px; }
-.eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 23px; color: var(--teal); font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-.eyebrow span { width: 28px; height: 1px; background: currentColor; }
+.eyebrow { margin: 0 0 23px; color: var(--teal); font-size: 14px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .eyebrow.light { color: #72dade; }
 .eyebrow.coral { color: #ff9b88; }
 .hero h1 { max-width: 650px; margin: 0; color: var(--navy); font-family: "SF Pro Display", -apple-system, sans-serif; font-size: clamp(52px, 5.5vw, 76px); font-weight: 650; letter-spacing: -.065em; line-height: .91; white-space: nowrap; }
@@ -84,7 +83,7 @@ a { color: inherit; }
 .stage-chip, .floating-chip { position: absolute; z-index: 6; display: flex; align-items: center; gap: 11px; min-width: 205px; padding: 12px 14px; border: 1px solid rgba(159,197,190,.78); border-radius: 14px; background: #fffefa; color: var(--ink); box-shadow: 0 12px 28px rgba(16,42,59,.12); }.stage-chip span, .floating-chip span { display: flex; flex-direction: column; }.stage-chip strong, .floating-chip strong { font-size: 11px; }.stage-chip small, .floating-chip small { margin-top: 2px; color: #6c8386; font-size: 9px; }.stage-chip > i, .floating-chip > i { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; border-radius: 9px; background: var(--seafoam); color: var(--teal); font-size: 13px; font-style: normal; font-weight: 800; }.stage-chip > i { width: 10px; height: 10px; border-radius: 50%; background: #2fa772; box-shadow: 0 0 0 5px rgba(47,167,114,.12); }.stage-chip kbd, .floating-chip kbd { padding: 8px; border: 1px solid #bdd4d0; border-bottom-width: 3px; border-radius: 7px; background: white; color: var(--ink); font: 700 11px/1 -apple-system,sans-serif; }.chip-left { bottom: -30px; left: 55px; }.chip-right { top: 110px; right: 10px; }
 
 .story { padding: 140px max(24px, calc((100vw - var(--max)) / 2)); }
-.story-heading { max-width: 660px; }.story-heading.centered { max-width: 850px; margin: 0 auto; text-align: center; }.story-heading.centered .eyebrow { justify-content: center; }
+.story-heading { max-width: 660px; }.story-heading.centered { max-width: 850px; margin: 0 auto; text-align: center; }
 .story-heading h2, .privacy-band h2 { margin: 0; color: inherit; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: clamp(42px, 5.3vw, 74px); font-weight: 600; letter-spacing: -.052em; line-height: 1.02; }.story-heading p:not(.eyebrow) { margin: 28px 0 0; color: inherit; opacity: .75; font-size: 18px; line-height: 1.6; }
 .native-story { position: relative; overflow: hidden; min-height: 930px; background: var(--navy); color: #f1f9f7; }.native-story::after { position: absolute; right: -240px; bottom: -330px; width: 760px; height: 760px; border-radius: 50%; background: rgba(43,176,177,.08); content: ""; }.native-story .story-heading { position: relative; z-index: 2; }
 .native-demo { position: relative; z-index: 2; display: grid; grid-template-columns: .8fr 1.35fr; gap: 70px; align-items: center; margin-top: 85px; }.demo-caption { padding-left: 24px; border-left: 2px solid #48bbc0; }.demo-caption > span { color: #72dade; font: 700 11px/1 "SF Mono",monospace; text-transform: uppercase; }.demo-caption strong { display: block; margin-top: 17px; font-size: 22px; }.demo-caption p { color: #a8beba; line-height: 1.6; }
@@ -139,13 +138,13 @@ a { color: inherit; }
 .footer { display: grid; grid-template-columns: minmax(260px, .8fr) minmax(0, 1.7fr); gap: 24px 48px; align-items: start; padding: 60px max(24px, calc((100vw - var(--max)) / 2)); background: #0d171b; color: #a8beba; }.footer-brand { display: flex; grid-column: 1; grid-row: 1; align-items: center; gap: 12px; color: white; text-decoration: none; }.footer-brand img { width: 44px; height: 44px; border-radius: 12px; }.footer-brand span { display: flex; flex-direction: column; }.footer-brand small { margin-top: 4px; color: #829d99; }.footer > p { grid-column: 1; grid-row: 2; margin: 0; font-size: 11px; line-height: 1.5; }.footer nav { display: grid; grid-column: 2; grid-row: 1; grid-template-columns: repeat(5, max-content); justify-content: end; gap: 14px 18px; }.footer nav a { font-size: 11px; text-decoration: none; }.footer nav a[aria-current="page"] { color: white; text-decoration: underline; text-underline-offset: 4px; }.footer > small { grid-column: 2; grid-row: 2; justify-self: end; }
 
 .policy-main { padding: 140px max(20px, calc((100vw - 900px) / 2)) 100px; }
-.policy-shell { display: grid; gap: 16px; }
-.policy-header { padding: 42px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,254,250,.86); box-shadow: 0 18px 50px rgba(16,42,59,.08); }
+.policy-shell { display: grid; gap: 0; }
+.policy-header { margin-bottom: 24px; padding: 42px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,254,250,.86); box-shadow: 0 18px 50px rgba(16,42,59,.08); }
 .policy-header h1 { margin: 0; color: var(--navy); font-family: "SF Pro Display", -apple-system, sans-serif; font-size: clamp(44px, 7vw, 72px); letter-spacing: -.05em; }
 .policy-header > p:not(.section-label):not(.policy-updated) { max-width: 680px; color: var(--muted); font-size: 17px; line-height: 1.6; }
 .section-label { margin: 0 0 14px; color: var(--teal); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .policy-updated { color: #738a8e; font-size: 12px; }
-.policy-card { padding: 28px 32px; border-bottom: 1px solid var(--line); }
+.policy-card { padding: 0 32px 24px; }
 .policy-card h2 { margin: 0 0 10px; color: var(--ink); font-size: 19px; }
 .policy-card p, .policy-list { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
 .policy-list { padding-left: 20px; }

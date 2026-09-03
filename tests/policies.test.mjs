@@ -7,6 +7,11 @@ const policyPages = Object.freeze([
   "terms-of-service.html",
   "refund-policy.html",
 ]);
+const effectiveDates = Object.freeze({
+  "privacy-policy.html": "September 3, 2026",
+  "terms-of-service.html": "September 3, 2026",
+  "refund-policy.html": "September 2, 2026",
+});
 const allPages = Object.freeze(["index.html", ...policyPages]);
 
 const headerLinks = Object.freeze([
@@ -46,7 +51,7 @@ function linksIn(html, selectorPattern) {
 test("publishes each policy with the current date, operator, and support contact", async () => {
   for (const path of policyPages) {
     const html = await readPage(path);
-    assert.match(html, /Effective date: September 2, 2026/);
+    assert.match(html, new RegExp(`Effective date: ${effectiveDates[path]}`));
     assert.match(html, /Michael Danko/);
     assert.match(html, /mailto:covemailapp@gmail.com/);
   }
@@ -127,11 +132,62 @@ test("states the main privacy and product boundaries", async () => {
   const privacy = await readPage("privacy-policy.html");
   const terms = await readPage("terms-of-service.html");
 
-  assert.match(privacy, /We do not operate\s+a hosted copy of your mailbox/);
+  assert.match(privacy, /We do not operate\s+a\s+hosted copy of your mailbox/);
   assert.match(privacy, /does not send diagnostic reports automatically/);
-  assert.match(privacy, /does not currently use a separate website analytics service/);
-  assert.match(terms, /One paid license may be active on up to three Macs/);
+  assert.match(privacy, /does not\s+currently use a separate website analytics service/);
+  assert.match(terms, /One paid license may be used on up to three Macs/);
+  assert.match(terms, /The people using those Macs\s+do not need to be the purchaser/);
   assert.match(terms, /Cove Mail does not include an AI model/);
+});
+
+test("lists the privacy request email in the privacy rights section", async () => {
+  const privacy = await readPage("privacy-policy.html");
+  const rights = privacy.match(
+    /<section class="policy-card" aria-labelledby="rights-heading">([\s\S]*?)<\/section>/,
+  )?.[1];
+
+  assert.ok(rights, "privacy rights section");
+  assert.match(rights, /href="mailto:covemailapp@gmail\.com">covemailapp@gmail\.com<\/a>/);
+});
+
+test("states that the terms apply to app use without imposing an adult-only restriction", async () => {
+  const terms = await readPage("terms-of-service.html");
+
+  assert.match(terms, /By downloading, installing, or\s+using Cove Mail, you agree to these Terms\./);
+  assert.match(terms, /you are authorized to agree on its behalf/);
+  assert.doesNotMatch(terms, /Eligibility and Authority|at least 18 years old/i);
+});
+
+test("explains Paddle's role in starting paid access", async () => {
+  const terms = await readPage("terms-of-service.html");
+
+  assert.match(terms, /Purchases are processed through Paddle\./);
+  assert.match(terms, /Paid access begins after Paddle confirms the\s+purchase\./);
+});
+
+test("starts every bullet point with a capital letter", async () => {
+  for (const path of allPages) {
+    const html = await readPage(path);
+    const bullets = [...html.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/g)].map((match) =>
+      textOnly(match[1]),
+    );
+
+    for (const bullet of bullets) {
+      const firstLetter = bullet.match(/[A-Za-z]/)?.[0];
+      assert.ok(firstLetter, `${path} bullet has no letter: ${bullet}`);
+      assert.equal(firstLetter, firstLetter.toUpperCase(), `${path} bullet: ${bullet}`);
+    }
+  }
+});
+
+test("keeps policy copy focused on customer impact", async () => {
+  const privacy = await readPage("privacy-policy.html");
+  const terms = await readPage("terms-of-service.html");
+
+  assert.match(privacy, /Payment processing and subscription management are handled by Paddle/);
+  assert.doesNotMatch(privacy, /<h2[^>]*>Trial Information<\/h2>|search indexes|random installation identifier|transaction identifiers|device identifiers|home page loads Paddle|cookies or similar technology/i);
+  assert.doesNotMatch(privacy, /reinstalling the app does not restart the trial/i);
+  assert.doesNotMatch(terms, /purchaser's use|multi-user or team license|Activation and License Checks|Payment alone does not activate the app/i);
 });
 
 test("removes the slogan-like phrases identified in the copy review", async () => {
@@ -145,4 +201,15 @@ test("removes the slogan-like phrases identified in the copy review", async () =
   ]) {
     assert.doesNotMatch(html, new RegExp(phrase, "i"));
   }
+});
+
+test("keeps policy sections compact and free of decorative horizontal rules", async () => {
+  const html = await readPage("index.html");
+  const css = await readFile(new URL("../styles.css", import.meta.url), "utf8");
+
+  assert.doesNotMatch(html, /<p class="eyebrow[^"]*">\s*<span/);
+  assert.doesNotMatch(css, /\.eyebrow span\s*\{/);
+  assert.doesNotMatch(css, /\.policy-card\s*\{[^}]*border-bottom/);
+  assert.match(css, /\.policy-shell\s*\{[^}]*gap:\s*0/);
+  assert.match(css, /\.policy-card\s*\{[^}]*padding:\s*0 32px 24px/);
 });
