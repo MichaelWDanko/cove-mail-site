@@ -23,16 +23,15 @@ const headerLinks = Object.freeze([
   ["Bring Your Own AI", "./index.html#connect"],
   ["Compass", "./index.html#compass"],
   ["Compatibility", "./index.html#compatibility"],
-  ["Pricing", "./pricing.html"],
-  ["Download", "https://github.com/MichaelWDanko/cove-mail-releases/releases/latest"],
+  ["Get Cove Mail", "./pricing.html"],
 ]);
 
 const footerLinks = Object.freeze([
   ["Bring Your Own AI", "./index.html#connect"],
   ["Compass", "./index.html#compass"],
   ["Compatibility", "./index.html#compatibility"],
-  ["Download", "https://github.com/MichaelWDanko/cove-mail-releases/releases/latest"],
-  ["Pricing", "./pricing.html"],
+  ["Download", "./pricing.html#download"],
+  ["Pricing", "./pricing.html#pricing"],
   ["Manage your subscription", "./subscription.html"],
   ["Privacy Policy", "./privacy-policy.html"],
   ["Terms of Service", "./terms-of-service.html"],
@@ -113,13 +112,31 @@ test("marks the current policy only in the footer", async () => {
   }
 });
 
-test("offers the latest production release from the hero and footer", async () => {
-  const html = await readPage("index.html");
-  assert.equal(html.match(/data-download-link/g)?.length, 4);
-  assert.equal(
-    html.match(/https:\/\/github\.com\/MichaelWDanko\/cove-mail-releases\/releases\/latest/g)?.length,
-    4,
-  );
+test("routes acquisition links through one Get Cove Mail page", async () => {
+  const home = await readPage("index.html");
+  assert.match(home, /href="\.\/pricing\.html#download">Get Cove Mail/);
+  assert.match(home, /href="\.\/pricing\.html#pricing">See pricing/);
+  assert.doesNotMatch(home, /data-download-link/);
+
+  for (const path of allPages.filter((path) => path !== "pricing.html")) {
+    const html = await readPage(path);
+    assert.doesNotMatch(html, /https:\/\/github\.com\/MichaelWDanko\/cove-mail-releases\/releases\/latest/);
+  }
+});
+
+test("combines a direct latest download with trial details and checkout", async () => {
+  const html = await readPage("pricing.html");
+  const directDownloadURL = "https://github.com/MichaelWDanko/cove-mail-releases/releases/latest/download/Cove-Mail.dmg";
+
+  assert.match(html, /<header id="download"[^>]*>/);
+  assert.match(html, /<h1>Download Cove Mail for Mac\.<\/h1>/);
+  assert.match(html, /data-download-link/);
+  assert.equal(html.match(new RegExp(directDownloadURL.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "g"))?.length, 1);
+  assert.match(html, /Requires macOS 14 or later\./);
+  assert.match(html, /Download for Apple silicon/);
+  assert.match(html, /Drag Cove Mail to Applications\./);
+  assert.match(html, /<section id="pricing"[^>]*>/);
+  assert.match(html, /cdn\.paddle\.com\/paddle\/v2\/paddle\.js/);
 });
 
 test("states the subscription renewal terms before checkout", async () => {

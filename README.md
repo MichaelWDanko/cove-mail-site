@@ -1,13 +1,25 @@
 # Cove Mail Site
 
-Bring Your Own AI landing page, pricing, subscription self-service, Privacy
-Policy, Terms of Service, and Refund Policy for Cove Mail.
+Bring Your Own AI landing page, Get Cove Mail download and pricing, subscription
+self-service, Privacy Policy, Terms of Service, and Refund Policy for Cove Mail.
 
 The site is intended to be hosted with GitHub Pages at:
 
 ```text
 covemail.ai
 ```
+
+## Download boundary
+
+The Get Cove Mail page links directly to the stable latest-release asset:
+
+```text
+https://github.com/MichaelWDanko/cove-mail-releases/releases/latest/download/Cove-Mail.dmg
+```
+
+Every production release must upload a byte-identical asset with the exact name
+`Cove-Mail.dmg`. The versioned DMG remains the source for the Sparkle appcast and
+release verification. The website does not use browser-side GitHub API lookup.
 
 ## Purchase boundary
 
