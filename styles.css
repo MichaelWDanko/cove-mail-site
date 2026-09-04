@@ -89,7 +89,7 @@ a { color: inherit; }
 
 .story { padding: 140px max(24px, calc((100vw - var(--max)) / 2)); }
 .story-heading { max-width: 660px; }.story-heading.centered { max-width: 850px; margin: 0 auto; text-align: center; }
-.story-heading h2, .privacy-band h2 { margin: 0; color: inherit; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: clamp(42px, 5.3vw, 74px); font-weight: 600; letter-spacing: -.052em; line-height: 1.02; }.story-heading p:not(.eyebrow) { margin: 28px 0 0; color: inherit; opacity: .75; font-size: 18px; line-height: 1.6; }
+.story-heading h2, .privacy-band h2 { margin: 0; color: inherit; font-family: "SF Pro Display", -apple-system, sans-serif; font-size: clamp(42px, 5.3vw, 74px); font-weight: 600; letter-spacing: -.052em; line-height: 1.02; text-wrap: balance; }.story-heading p:not(.eyebrow) { margin: 28px 0 0; color: inherit; opacity: .75; font-size: 18px; line-height: 1.6; }
 .native-story { position: relative; overflow: hidden; min-height: 930px; background: var(--navy); color: #f1f9f7; }.native-story::after { position: absolute; right: -240px; bottom: -330px; width: 760px; height: 760px; border-radius: 50%; background: rgba(43,176,177,.08); content: ""; }.native-story .story-heading { position: relative; z-index: 2; }
 .connection-story .story-heading, .native-story .story-heading { max-width: none; }
 .connection-story .story-heading > p:not(.eyebrow), .native-story .story-heading > p:not(.eyebrow) { max-width: 720px; }

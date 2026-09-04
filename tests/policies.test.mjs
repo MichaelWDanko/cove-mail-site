@@ -175,6 +175,7 @@ test("lets the MCP and Compass headings use the full content width", async () =>
   const styles = await readFile(new URL("../styles.css", import.meta.url), "utf8");
   assert.match(styles, /\.connection-story \.story-heading, \.native-story \.story-heading \{ max-width: none; \}/);
   assert.match(styles, /\.connection-story \.story-heading > p:not\(\.eyebrow\), \.native-story \.story-heading > p:not\(\.eyebrow\) \{ max-width: 720px; \}/);
+  assert.match(styles, /\.story-heading h2, \.privacy-band h2 \{[^}]*text-wrap: balance;/);
 });
 
 test("names MCP as the local bridge and keeps Compass shortcut independent", async () => {
