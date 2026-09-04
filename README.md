@@ -1,13 +1,25 @@
 # Cove Mail Site
 
-Landing page, Privacy Policy, Terms of Service, Refund Policy, Paddle overlay
-checkout, and license self-service for Cove Mail.
+Bring Your Own AI landing page, Get Cove Mail download and pricing, subscription
+self-service, Privacy Policy, Terms of Service, and Refund Policy for Cove Mail.
 
 The site is intended to be hosted with GitHub Pages at:
 
 ```text
 covemail.ai
 ```
+
+## Download boundary
+
+The Get Cove Mail page links directly to the stable latest-release asset:
+
+```text
+https://github.com/MichaelWDanko/cove-mail-releases/releases/latest/download/Cove-Mail.dmg
+```
+
+Every production release must upload a byte-identical asset with the exact name
+`Cove-Mail.dmg`. The versioned DMG remains the source for the Sparkle appcast and
+release verification. The website does not use browser-side GitHub API lookup.
 
 ## Purchase boundary
 
@@ -18,10 +30,10 @@ Paddle overlay checkout with one matching price.
 Browser events never grant a license. Paid access starts only after the
 licensing backend verifies and processes a signed Paddle webhook.
 
-## License self-service boundary
+## Subscription self-service boundary
 
-The Manage license section sends customers to the environment-matched Paddle
-customer portal. Paddle authenticates customers by email and provides billing,
+The subscription page sends customers to the environment-matched Paddle customer
+portal. Paddle authenticates customers by email and provides billing,
 payment-method, renewal, and cancellation controls.
 
 Activation email requests ask only for the licensing email. The browser posts
