@@ -176,6 +176,8 @@ test("lets the MCP and Compass headings use the full content width", async () =>
   assert.match(styles, /\.connection-story \.story-heading, \.native-story \.story-heading \{ max-width: none; \}/);
   assert.match(styles, /\.connection-story \.story-heading > p:not\(\.eyebrow\), \.native-story \.story-heading > p:not\(\.eyebrow\) \{ max-width: 720px; \}/);
   assert.match(styles, /\.story-heading h2, \.privacy-band h2 \{[^}]*text-wrap: balance;/);
+  assert.match(styles, /\.headline-line \{ display: block; \}/);
+  assert.match(styles, /@media \(max-width: 880px\) \{[\s\S]*\.headline-line \{ display: inline; \}/);
 });
 
 test("names MCP as the local bridge and keeps Compass shortcut independent", async () => {
@@ -186,7 +188,7 @@ test("names MCP as the local bridge and keeps Compass shortcut independent", asy
   assert.match(html, /Model Context Protocol \(MCP\) bridge/);
   assert.match(connection, /local MCP server/);
   assert.match(connection, /Any agent that can connect to a local MCP server/);
-  assert.match(compass, /<h2>Compass puts mail and settings in one place\.<\/h2>/);
+  assert.match(compass.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "), /Compass puts mail and settings in one place\./);
   assert.doesNotMatch(compass, /Command-K|⌘ K|keyboard shortcut|<kbd>/i);
   assert.equal(compass.match(/class="compass-result/g)?.length, 4);
 });
