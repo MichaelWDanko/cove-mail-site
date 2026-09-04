@@ -136,30 +136,34 @@ if (!motionSupported) {
   }
 
   const progress = document.querySelector(".scroll-progress");
-  let scrollRange = 1;
-  let frameRequested = false;
-  const updateProgress = () => {
-    const ratio = Math.min(1, Math.max(0, scrollY / scrollRange));
-    if (progress) progress.style.transform = `scaleX(${ratio})`;
-    frameRequested = false;
-  };
-  const measureScrollRange = () => {
-    scrollRange = Math.max(1, document.documentElement.scrollHeight - innerHeight);
-    updateProgress();
-  };
-  addEventListener("scroll", () => {
-    if (!frameRequested) {
-      requestAnimationFrame(updateProgress);
-      frameRequested = true;
+  const supportsScrollDrivenProgress = typeof CSS !== "undefined"
+    && typeof CSS.supports === "function"
+    && CSS.supports("animation-timeline: scroll()");
+  if (progress && !supportsScrollDrivenProgress) {
+    let scrollRange = 1;
+    let frameRequested = false;
+    const updateProgress = () => {
+      const ratio = Math.min(1, Math.max(0, scrollY / scrollRange));
+      progress.style.transform = `scaleX(${ratio})`;
+      frameRequested = false;
+    };
+    const measureScrollRange = () => {
+      scrollRange = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+      updateProgress();
+    };
+    addEventListener("scroll", () => {
+      if (!frameRequested) {
+        requestAnimationFrame(updateProgress);
+        frameRequested = true;
+      }
+    }, { passive: true });
+    addEventListener("resize", measureScrollRange, { passive: true });
+    if ("ResizeObserver" in window) {
+      const sizeObserver = new ResizeObserver(measureScrollRange);
+      sizeObserver.observe(document.body);
     }
-  }, { passive: true });
-  addEventListener("resize", measureScrollRange, { passive: true });
-  let sizeObserver;
-  if ("ResizeObserver" in window) {
-    sizeObserver = new ResizeObserver(measureScrollRange);
-    sizeObserver.observe(document.body);
+    measureScrollRange();
   }
-  measureScrollRange();
 
   const handleVisibilityChange = () => updateMotionScenes();
   document.addEventListener("visibilitychange", handleVisibilityChange);

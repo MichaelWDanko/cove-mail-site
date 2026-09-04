@@ -38,6 +38,18 @@ test("scroll-time effects avoid layout and blur animation", () => {
   });
 });
 
+test("offscreen sections skip rendering while preserving their intrinsic layout", () => {
+  assert.match(styles, /main > section, \.footer \{ contain: layout paint; \}/);
+  assert.match(styles, /@supports \(content-visibility: auto\)/);
+  assert.match(styles, /main > \.story, main > \.privacy-band, \.footer \{ content-visibility: auto; contain-intrinsic-size: auto 900px; \}/);
+});
+
+test("large animated surfaces receive compositor hints only while their scene is active", () => {
+  assert.match(styles, /\[data-motion-scene\]\.is-motion-active :is\([^}]+\) \{ backface-visibility: hidden; will-change: transform; \}/);
+  assert.doesNotMatch(styles, /\.hero-window \{[^}]*will-change/);
+  assert.doesNotMatch(styles, /\.compass-window \{[^}]*will-change/);
+});
+
 test("scroll progress caches its range and clamps elastic overscroll", () => {
   const updateStart = app.indexOf("const updateProgress");
   const measureStart = app.indexOf("const measureScrollRange");
@@ -47,6 +59,13 @@ test("scroll progress caches its range and clamps elastic overscroll", () => {
   assert.doesNotMatch(updateProgress, /scrollHeight/);
   assert.match(updateProgress, /Math\.min\(1, Math\.max\(0,/);
   assert.match(updateProgress, /style\.transform = `scaleX/);
+});
+
+test("scroll progress uses a native timeline when the browser supports it", () => {
+  assert.match(styles, /@supports \(animation-timeline: scroll\(\)\)/);
+  assert.match(styles, /animation-timeline: scroll\(root block\)/);
+  assert.match(app, /CSS\.supports\("animation-timeline: scroll\(\)"\)/);
+  assert.match(app, /if \(progress && !supportsScrollDrivenProgress\)/);
 });
 
 test("first-party motion setup does not wait for Paddle", () => {
