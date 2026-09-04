@@ -116,12 +116,24 @@ test("routes acquisition links through one Get Cove Mail page", async () => {
   const home = await readPage("index.html");
   assert.match(home, /href="\.\/pricing\.html#download">Get Cove Mail/);
   assert.match(home, /href="\.\/pricing\.html#pricing">See pricing/);
+  assert.doesNotMatch(home, /See how the connection works/);
   assert.doesNotMatch(home, /data-download-link/);
 
   for (const path of allPages.filter((path) => path !== "pricing.html")) {
     const html = await readPage(path);
     assert.doesNotMatch(html, /https:\/\/github\.com\/MichaelWDanko\/cove-mail-releases\/releases\/latest/);
   }
+});
+
+test("keeps button labels free of directional arrows", async () => {
+  for (const path of allPages) {
+    const html = await readPage(path);
+    const buttons = [...html.matchAll(/<(?:a|button)\b[^>]*class="[^"]*\bbutton\b[^"]*"[^>]*>([\s\S]*?)<\/(?:a|button)>/g)];
+    for (const button of buttons) assert.doesNotMatch(textOnly(button[1]), /[→↓↗←↑]/, `${path} button label`);
+  }
+
+  const styles = await readFile(new URL("../styles.css", import.meta.url), "utf8");
+  assert.match(styles, /\.button \{ justify-content: center; \}/);
 });
 
 test("combines a direct latest download with trial details and checkout", async () => {
@@ -157,6 +169,12 @@ test("leads with Bring Your Own AI before Compass and inbox compatibility", asyn
   assert.doesNotMatch(html, /id="(?:pricing|manage-license)"/);
   assert.match(html, /href="\.\/pricing\.html"/);
   assert.match(html, /href="\.\/subscription\.html"/);
+});
+
+test("lets the MCP and Compass headings use the full content width", async () => {
+  const styles = await readFile(new URL("../styles.css", import.meta.url), "utf8");
+  assert.match(styles, /\.connection-story \.story-heading, \.native-story \.story-heading \{ max-width: none; \}/);
+  assert.match(styles, /\.connection-story \.story-heading > p:not\(\.eyebrow\), \.native-story \.story-heading > p:not\(\.eyebrow\) \{ max-width: 720px; \}/);
 });
 
 test("names MCP as the local bridge and keeps Compass shortcut independent", async () => {

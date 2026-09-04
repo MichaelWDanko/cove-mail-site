@@ -76,7 +76,7 @@ test("subscription management is discoverable and activation asks for only an em
   assert.match(section, /target="_blank"/);
   assert.match(section, /rel="noopener noreferrer"/);
   assert.match(section, /aria-label="Manage your subscription in Paddle \(opens in a new tab\)"/);
-  assert.match(section, />\s*Manage your subscription\s*<span/);
+  assert.match(section, />\s*Manage your subscription\s*<\/a>/);
   assert.equal(section.match(/<input\b/g)?.length, 1);
   assert.match(section, /name="licensingEmail"[\s\S]*type="email"/);
   assert.match(section, /method="post"[\s\S]*action="\/api\/license-recovery"/);
