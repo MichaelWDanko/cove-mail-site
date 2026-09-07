@@ -1,4 +1,8 @@
 const PLAN_ORDER = Object.freeze(["month", "year"]);
+const DEFAULT_CHECKOUT_SETTINGS = Object.freeze({
+  displayMode: "overlay",
+  theme: "dark",
+});
 
 export function validateSiteConfig(config) {
   if (!config || (config.environment !== "sandbox" && config.environment !== "production")) {
@@ -63,10 +67,7 @@ export function checkoutItems(plan) {
 export function checkoutOptions(plan) {
   return {
     items: checkoutItems(plan),
-    settings: {
-      displayMode: "overlay",
-      theme: "dark",
-    },
+    settings: { ...DEFAULT_CHECKOUT_SETTINGS },
   };
 }
 
@@ -76,7 +77,11 @@ export function initializePaddle(Paddle, config, eventCallback) {
   }
 
   if (config.paddleEnvironment === "sandbox") Paddle.Environment.set("sandbox");
-  Paddle.Initialize({ token: config.clientToken, eventCallback });
+  Paddle.Initialize({
+    token: config.clientToken,
+    eventCallback,
+    checkout: { settings: { ...DEFAULT_CHECKOUT_SETTINGS } },
+  });
   return Paddle;
 }
 
