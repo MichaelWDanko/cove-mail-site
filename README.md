@@ -77,6 +77,12 @@ from `https://covemail.ai` before the activation form can work from GitHub
 Pages. The subscription portal link is environment-specific static
 configuration.
 
+Paddle account setup is required in addition to this repository configuration.
+Set the production default payment link to `https://covemail.ai/pricing.html`
+under Paddle Checkout settings and obtain approval for the `covemail.ai`
+domain. Paddle's live checkout logo and colors are configured in the Paddle
+dashboard; the site's CSS cannot override hosted checkout branding.
+
 Run the static build locally with:
 
 ```sh

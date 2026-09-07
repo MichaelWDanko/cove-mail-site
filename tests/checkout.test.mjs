@@ -45,9 +45,13 @@ test("opens the selected price in Paddle overlay checkout", () => {
 
 test("configures Paddle sandbox before initialization", () => {
   const calls = [];
+  let initializationOptions;
   const Paddle = {
     Environment: { set: (environment) => calls.push(["environment", environment]) },
-    Initialize: (options) => calls.push(["initialize", options.token]),
+    Initialize: (options) => {
+      initializationOptions = options;
+      calls.push(["initialize", options.token]);
+    },
     Checkout: { open() {} },
     PricePreview() {},
   };
@@ -56,6 +60,9 @@ test("configures Paddle sandbox before initialization", () => {
     ["environment", "sandbox"],
     ["initialize", "test_client_token"],
   ]);
+  assert.deepEqual(initializationOptions.checkout, {
+    settings: { displayMode: "overlay", theme: "dark" },
+  });
 });
 
 test("rejects a production token in sandbox configuration", () => {
