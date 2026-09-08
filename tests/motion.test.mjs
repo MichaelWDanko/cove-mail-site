@@ -50,22 +50,12 @@ test("large animated surfaces receive compositor hints only while their scene is
   assert.doesNotMatch(styles, /\.compass-window \{[^}]*will-change/);
 });
 
-test("scroll progress caches its range and clamps elastic overscroll", () => {
-  const updateStart = app.indexOf("const updateProgress");
-  const measureStart = app.indexOf("const measureScrollRange");
-  assert.ok(updateStart >= 0 && measureStart > updateStart);
-
-  const updateProgress = app.slice(updateStart, measureStart);
-  assert.doesNotMatch(updateProgress, /scrollHeight/);
-  assert.match(updateProgress, /Math\.min\(1, Math\.max\(0,/);
-  assert.match(updateProgress, /style\.transform = `scaleX/);
-});
-
-test("scroll progress uses a native timeline when the browser supports it", () => {
+test("scroll progress is native-only and hidden without timeline support", () => {
+  assert.match(styles, /\.scroll-progress \{ display: none;/);
   assert.match(styles, /@supports \(animation-timeline: scroll\(\)\)/);
-  assert.match(styles, /animation-timeline: scroll\(root block\)/);
-  assert.match(app, /CSS\.supports\("animation-timeline: scroll\(\)"\)/);
-  assert.match(app, /if \(progress && !supportsScrollDrivenProgress\)/);
+  assert.match(styles, /display: block; animation: scrollProgress linear both; animation-timeline: scroll\(root block\)/);
+  assert.doesNotMatch(app, /addEventListener\("scroll"/);
+  assert.doesNotMatch(app, /ResizeObserver|scrollHeight|scrollY/);
 });
 
 test("first-party motion setup does not wait for Paddle", () => {
