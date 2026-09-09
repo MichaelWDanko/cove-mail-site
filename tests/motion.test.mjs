@@ -15,8 +15,8 @@ test("ambient motion runs only in visible motion scenes", () => {
   assert.equal(html.match(/data-motion-scene/g)?.length, 4);
   assert.match(app, /querySelectorAll\("\[data-motion-scene\]"\)/);
   assert.match(app, /classList\.toggle\("is-motion-active"/);
-  assert.match(app, /!document\.hidden && !motionPreference\.matches/);
-  assert.match(app, /if \(event\.matches\) disableMotion\(\);\s*else enableMotion\(\);/);
+  assert.match(app, /!document\.hidden && !shouldReduceMotion\(\)/);
+  assert.match(app, /if \(shouldReduceMotion\(\)\) disableMotion\(\);\s*else enableMotion\(\);/);
 
   const infiniteAnimations = [...styles.matchAll(/animation:[^;}]*\binfinite\b/g)].map(
     ([declaration]) => declaration,
@@ -105,12 +105,20 @@ test("changing Reduce Motion pauses and resumes a visible scene", () => {
   }
 
   let preferenceListener;
+  let effectsListener;
+  const effectsLabel = { hidden: true };
+  const effectsControl = {
+    checked: false,
+    closest: () => effectsLabel,
+    addEventListener: (_event, listener) => { effectsListener = listener; },
+  };
+  const saved = new Map();
   const motionPreference = {
     matches: false,
     addEventListener: (_event, listener) => { preferenceListener = listener; },
   };
   const context = {
-    ResizeObserver: class { observe() {} },
+    localStorage: { getItem: (key) => saved.get(key), setItem: (key, value) => saved.set(key, value) },
     IntersectionObserver: Observer,
     addEventListener: () => {},
     document: {
@@ -120,6 +128,7 @@ test("changing Reduce Motion pauses and resumes a visible scene", () => {
       addEventListener: () => {},
       querySelector: (selector) => selector === ".scroll-progress" ? progress : null,
       querySelectorAll: (selector) => {
+        if (selector === "[data-reduce-effects]") return [effectsControl];
         if (selector === ".reveal") return [reveal];
         if (selector === "[data-motion-scene]") return [scene];
         return [];
@@ -148,4 +157,24 @@ test("changing Reduce Motion pauses and resumes a visible scene", () => {
   preferenceListener({ matches: false });
   assert.equal(scene.classList.contains("is-motion-active"), true);
   assert.equal(body.classList.contains("motion-ready"), true);
+  assert.equal(effectsLabel.hidden, false);
+  effectsControl.checked = true;
+  effectsListener();
+  assert.equal(body.classList.contains("reduced-effects"), true);
+  assert.equal(scene.classList.contains("is-motion-active"), false);
+  assert.equal(saved.get("cove-reduce-effects"), "true");
+  motionPreference.matches = true;
+  effectsControl.checked = false;
+  effectsListener();
+  assert.equal(scene.classList.contains("is-motion-active"), false);
+  motionPreference.matches = false;
+  preferenceListener();
+  assert.equal(scene.classList.contains("is-motion-active"), true);
+  effectsControl.checked = true;
+  effectsListener();
+  const reloaded = { ...context };
+  reloaded.window = reloaded;
+  runInNewContext(app, reloaded);
+  assert.equal(effectsControl.checked, true);
+  assert.equal(body.classList.contains("reduced-effects"), true);
 });
