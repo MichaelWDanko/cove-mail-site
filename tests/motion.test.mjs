@@ -38,11 +38,10 @@ test("scroll-time effects avoid layout and blur animation", () => {
   });
 });
 
-test("scroll comparison avoids deferred layout and perspective surfaces", () => {
+test("offscreen sections skip rendering while preserving their intrinsic layout", () => {
   assert.match(styles, /main > section, \.footer \{ contain: layout paint; \}/);
-  assert.doesNotMatch(styles, /content-visibility: auto|perspective:|rotate[XY]\(/);
-  assert.doesNotMatch(styles.match(/\.hero::before \{[^}]+\}/)[0], /mask-image:/);
-  assert.match(styles, /@keyframes windowDrift/);
+  assert.match(styles, /@supports \(content-visibility: auto\)/);
+  assert.match(styles, /main > \.story, main > \.privacy-band, \.footer \{ content-visibility: auto; contain-intrinsic-size: auto 900px; \}/);
 });
 
 test("large animated surfaces receive compositor hints only while their scene is active", () => {
