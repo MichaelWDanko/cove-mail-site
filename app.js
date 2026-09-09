@@ -19,6 +19,11 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 });
 
 const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+const effectsStorageKey = "cove-reduce-effects";
+let reduceEffects = false;
+try { reduceEffects = localStorage.getItem(effectsStorageKey) === "true"; } catch {}
+const shouldReduceMotion = () => motionPreference.matches || reduceEffects;
+document.body.classList.toggle("reduced-effects", reduceEffects);
 const revealNodes = [...document.querySelectorAll(".reveal")];
 const motionSupported = "IntersectionObserver" in window;
 let disableMotion = () => {};
@@ -27,7 +32,7 @@ let enableMotion = () => {};
 if (!motionSupported) {
   revealNodes.forEach((node) => node.classList.add("is-visible"));
 } else {
-  if (motionPreference.matches) {
+  if (shouldReduceMotion()) {
     revealNodes.forEach((node) => node.classList.add("is-visible"));
   } else {
     const initialRevealBoundary = innerHeight * 0.92;
@@ -60,7 +65,7 @@ if (!motionSupported) {
   const motionScenes = [...document.querySelectorAll("[data-motion-scene]")];
   const visibleMotionScenes = new Set();
   const updateMotionScenes = () => {
-    const canAnimate = !document.hidden && !motionPreference.matches;
+    const canAnimate = !document.hidden && !shouldReduceMotion();
     motionScenes.forEach((scene) => {
       scene.classList.toggle("is-motion-active", canAnimate && visibleMotionScenes.has(scene));
     });
@@ -100,7 +105,7 @@ if (!motionSupported) {
       restoreCompass();
     };
     const startCompass = async () => {
-      if (compassRunning || !compassInView || document.hidden || motionPreference.matches) return;
+      if (compassRunning || !compassInView || document.hidden || shouldReduceMotion()) return;
       compassRunning = true;
       const generation = ++compassGeneration;
       compassWindow.classList.add("is-simulating");
@@ -150,8 +155,8 @@ if (!motionSupported) {
   };
 }
 
-const handleMotionPreferenceChange = (event) => {
-  if (event.matches) disableMotion();
+const handleMotionPreferenceChange = () => {
+  if (shouldReduceMotion()) disableMotion();
   else enableMotion();
 };
 if (typeof motionPreference.addEventListener === "function") {
@@ -159,3 +164,16 @@ if (typeof motionPreference.addEventListener === "function") {
 } else {
   motionPreference.addListener(handleMotionPreferenceChange);
 }
+
+const effectsControls = [...document.querySelectorAll("[data-reduce-effects]")];
+effectsControls.forEach((control) => {
+  control.checked = reduceEffects;
+  control.closest("label").hidden = false;
+  control.addEventListener("change", () => {
+    reduceEffects = control.checked;
+    document.body.classList.toggle("reduced-effects", reduceEffects);
+    effectsControls.forEach((other) => { other.checked = reduceEffects; });
+    try { localStorage.setItem(effectsStorageKey, String(reduceEffects)); } catch {}
+    handleMotionPreferenceChange();
+  });
+});
